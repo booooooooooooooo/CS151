@@ -14,7 +14,7 @@ Print Seating [A]vailability Chart
 Print [M]anifest
 [Q]uit
 Enter your option: Name: [First] or [Economy]: [W]indow, [C]entor or [A]aisle: Order succeeded!
-Seat :
+Seat : 
 1A
 ********************
 ********************
@@ -25,7 +25,7 @@ Print Seating [A]vailability Chart
 Print [M]anifest
 [Q]uit
 Enter your option: Name: [First] or [Economy]: [W]indow, [C]entor or [A]aisle: Order succeeded!
-Seat :
+Seat : 
 1B
 ********************
 ********************
@@ -45,7 +45,7 @@ Print Seating [A]vailability Chart
 Print [M]anifest
 [Q]uit
 Enter your option: Name: [First] or [Economy]: [W]indow, [C]entor or [A]aisle: Order succeeded!
-Seat :
+Seat : 
 2A
 ********************
 ********************
@@ -57,7 +57,7 @@ Print [M]anifest
 [Q]uit
 Enter your option: Group Name: Please enter all passenger names seperated by comma: [First] or [Economy]: [6, 0, 0]
 Order succeeded!
- Seats :
+ Seats : 
 10A
 10B
 10C
@@ -70,7 +70,7 @@ Print Seating [A]vailability Chart
 Print [M]anifest
 [Q]uit
 Enter your option: Name: [First] or [Economy]: [W]indow, [C]entor or [A]aisle: Order succeeded!
-Seat :
+Seat : 
 10E
 ********************
 ********************
@@ -81,7 +81,7 @@ Print Seating [A]vailability Chart
 Print [M]anifest
 [Q]uit
 Enter your option: Name: [First] or [Economy]: [W]indow, [C]entor or [A]aisle: Order succeeded!
-Seat :
+Seat : 
 10F
 ********************
 ********************
@@ -110,50 +110,50 @@ Print Seating [A]vailability Chart
 Print [M]anifest
 [Q]uit
 Enter your option: First
-1:  A,
+1:  A
 
-2:  B,
+2:  B
 
 Economy
-1:  D,
+1:  D
 
-2:  A, B, C, D, E, F,
+2:  A, B, C, D, E, F
 
-3:  A, B, C, D, E, F,
+3:  A, B, C, D, E, F
 
-4:  A, B, C, D, E, F,
+4:  A, B, C, D, E, F
 
-5:  A, B, C, D, E, F,
+5:  A, B, C, D, E, F
 
-6:  A, B, C, D, E, F,
+6:  A, B, C, D, E, F
 
-7:  A, B, C, D, E, F,
+7:  A, B, C, D, E, F
 
-8:  A, B, C, D, E, F,
+8:  A, B, C, D, E, F
 
-9:  A, B, C, D, E, F,
+9:  A, B, C, D, E, F
 
-10:  A, B, C, D, E, F,
+10:  A, B, C, D, E, F
 
-11:  A, B, C, D, E, F,
+11:  A, B, C, D, E, F
 
-12:  A, B, C, D, E, F,
+12:  A, B, C, D, E, F
 
-13:  A, B, C, D, E, F,
+13:  A, B, C, D, E, F
 
-14:  A, B, C, D, E, F,
+14:  A, B, C, D, E, F
 
-15:  A, B, C, D, E, F,
+15:  A, B, C, D, E, F
 
-16:  A, B, C, D, E, F,
+16:  A, B, C, D, E, F
 
-17:  A, B, C, D, E, F,
+17:  A, B, C, D, E, F
 
-18:  A, B, C, D, E, F,
+18:  A, B, C, D, E, F
 
-19:  A, B, C, D, E, F,
+19:  A, B, C, D, E, F
 
-20:  A, B, C, D, E, F,
+20:  A, B, C, D, E, F
 
 ********************
 ********************
@@ -196,4 +196,4 @@ Add [G]roup
 Print Seating [A]vailability Chart
 Print [M]anifest
 [Q]uit
-Enter your option:
+Enter your option: 

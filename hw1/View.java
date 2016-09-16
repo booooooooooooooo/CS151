@@ -1,4 +1,4 @@
-package hw1;
+// package hw1;
 import java.util.*;
 public class View{
   Scanner cin ;
@@ -32,18 +32,23 @@ public class View{
     }
     System.out.println();
   }
-  //TODO: remove last comma
   /*
    A seat availability chart shows the available seats of each row of each class
    */
   public  void printAvailability(Model model){
+
     System.out.println("First");
     Chart firstChart = model.firstChart;
     for(int i = 0; i < firstChart.row; i++){
+      boolean printComma = false;
       System.out.printf("%d: ", i + 1);
       for(int j = 0; j < firstChart.col; j++){
-        if(firstChart.panel.get(i).get(j) == null)
-          System.out.printf(" %s,", firstChart.colName.get(j));
+        if(firstChart.panel.get(i).get(j) == null){
+          if(!printComma) printComma = true;
+          else System.out.printf(",");
+          System.out.printf(" %s", firstChart.colName.get(j));
+        }
+
       }
       System.out.println("\n");
     }
@@ -51,10 +56,14 @@ public class View{
     System.out.println("Economy");
     Chart economyChart = model.economyChart;
     for(int i = 0; i < economyChart.row; i++){
+      boolean printComma = false;
       System.out.printf("%d: ", i + 1);
       for(int j = 0; j < economyChart.col; j++){
-        if(economyChart.panel.get(i).get(j) == null)
-          System.out.printf(" %s,", economyChart.colName.get(j));
+        if(economyChart.panel.get(i).get(j) == null){
+          if(!printComma) printComma = true;
+          else System.out.printf(",");
+          System.out.printf(" %s", economyChart.colName.get(j));
+        }
       }
       System.out.println("\n");
     }

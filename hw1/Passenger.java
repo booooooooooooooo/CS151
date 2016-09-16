@@ -1,4 +1,4 @@
-package hw1;
+// package hw1;
 
 import java.io.Serializable;
 class Passenger implements Serializable{
