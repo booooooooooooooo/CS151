@@ -50,6 +50,9 @@ public class Chart{
     }
   }
 
+  /*
+  Add passenger to arbitary available seat
+  */
   public String addPassenger(String name){
     for(int i = 0; i < row; i++){
       for(int j = 0 ; j < col; j++){
@@ -62,6 +65,7 @@ public class Chart{
     return null;
   }
   /**
+  Add passenger to specific seat preference
   if succeed, update panel and return seat number
   else return null
   */
@@ -106,6 +110,7 @@ public class Chart{
     return null;
   }
   /**
+  Add group.
   if succeed update panel and return List of seat numbers
   else return null
   */
@@ -128,6 +133,7 @@ public class Chart{
     return seats;
   }
   /**
+  Cancel a individual Passenger
   if succeed update panel and return true
   else return false
   */
@@ -144,6 +150,7 @@ public class Chart{
     return false;
   }
   /**
+  Cancel Group
   if succeed update panel and return true
   else return false
   */
@@ -161,6 +168,10 @@ public class Chart{
     return groupExistence;
   }
   /*
+  Below are Utilities
+  */
+  
+  /*
   Get number of available seats
   */
   private int getNumberOfAvailableSeats(){
@@ -175,6 +186,7 @@ public class Chart{
   /*
   Find the length of largest adjacency list as long as its start row index and colume index
   Store results in array
+  Didn't consider reducing complexity.
   */
   private int[] findLargestAdjList(){
     int[] next = {0, -1, -1}; // len, rowIndex, colIndex

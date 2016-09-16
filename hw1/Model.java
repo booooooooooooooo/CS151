@@ -18,6 +18,9 @@ public class Model {
     economyChart = new Chart("Economy");
     readInOrderInfoFromFile(path);
   }
+  /*
+  Serialize in data frome File
+  */
   private void readInOrderInfoFromFile(String path)throws IOException,
 			ClassNotFoundException{
     File f = new File(path);
@@ -29,8 +32,11 @@ public class Model {
 		firstChart.panel = (List<List<Passenger>>)ois.readObject();
     economyChart.panel = (List<List<Passenger>>)ois.readObject();
 		ois.close();
+    fis.close();
   }
-
+  /*
+  Serialize data out to File
+  */
   public void writeOrderInfoToFile(String path)throws IOException{
     FileOutputStream fos = new FileOutputStream(path);
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -38,31 +44,44 @@ public class Model {
       oos.writeObject(firstChart.panel);
       oos.writeObject(economyChart.panel);
     }catch(IOException e){}
+    oos.close();
 		fos.close();
   }
+  /*
+  Add Passenger of arbitrary available seat
+  */
   public String addPassenger(String name, String serviceClass){
     if(serviceClass.equals("First")) return firstChart.addPassenger(name);
     else return economyChart.addPassenger(name);
   }
+  /*
+  Add Passenger of specific seat preference
+  */
   public String addPassenger(String name, String serviceClass, String seatPreference){
     if(serviceClass.equals("First")) return firstChart.addPassenger(name, seatPreference);
     else return economyChart.addPassenger(name, seatPreference);
   }
-  public String addEcoClassPassenger(String name, String seatPreference){
-    return economyChart.addPassenger(name, seatPreference);
+  /*
+  Add group
+  */
+  public List<String>  addGroup(String groupName, List<String> names, String serviceClass){
+    if(serviceClass.equals("First")) return firstChart.addGroup(groupName, names);
+    else return economyChart.addGroup(groupName, names);
   }
-  public List<String>  addFirstClasssGroup(String groupName, List<String> names){
-    return firstChart.addGroup(groupName, names);
-  }
-  public List<String>  addEcoClassGroup(String groupName, List<String> names){
-    return economyChart.addGroup(groupName, names);
-  }
+  /*
+  Cancel Passenger
+  */
   public boolean cancelPassenger(String name){
     return firstChart.cancelPassenger(name) || economyChart.cancelPassenger(name);
   }
+  /*
+  Cancel groupName
+  */
   public boolean cancelGroup(String groupName){
     return firstChart.cancelGroup(groupName) || economyChart.cancelGroup(groupName);
   }
+
+  /*Utilities below*/
   public boolean isFull(){
     return firstChart.getNumberOfAvailableSeats() == 0 && economyChart.getNumberOfAvailableSeats() == 0;
   }
