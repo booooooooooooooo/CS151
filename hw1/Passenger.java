@@ -1,5 +1,7 @@
 package hw1;
-class Passenger{
+
+import java.io.Serializable;
+class Passenger implements Serializable{
   String name;
   String group;
   public Passenger(String name){

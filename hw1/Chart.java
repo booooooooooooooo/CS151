@@ -3,8 +3,8 @@ package hw1;
 import java.util.*;
 
 public class Chart{
-  private List<List<Passenger>> panel;
-  private List<List<String>> seatName;
+  public List<List<Passenger>> panel;
+  public List<List<String>> seatName;
   private int row;
   private int col;
 
@@ -211,4 +211,5 @@ public class Chart{
   public List<List<Passenger>> getPanel(){
     return this.panel;
   }
+
 }
