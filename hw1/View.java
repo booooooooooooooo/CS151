@@ -1,12 +1,15 @@
 package hw1;
 import java.util.*;
 public class View{
+  Scanner cin ;
+  public View(){
+    cin = new Scanner(System.in);
+  }
 
-  public static String readNextLine(){
-    Scanner cin = new Scanner(System.in);
+  public  String readNextLine(){
     return cin.nextLine();
   }
-  public static List<String> readListOfNamesFromNextLine(){
+  public  List<String> readListOfNamesFromNextLine(){
     String nameLine = readNextLine();
     String[] names = nameLine.split(",");
     for(int i = 0; i < names.length; i++){
@@ -16,10 +19,10 @@ public class View{
   }
 
 
-  public static void printWelcome(){
+  public  void printWelcome(){
     System.out.println("\n\n\nWelcome to SJSU airplane System!\n\n\n");
   }
-  public static void printPanel(Chart chart, int row, int col){
+  public  void printPanel(Chart chart, int row, int col){
     List<List<Passenger>> panel = chart.getPanel();
     for(int i = 0; i < row; i++){
       for(int j = 0; j < col; j++){
@@ -33,7 +36,7 @@ public class View{
   /*
    A seat availability chart shows the available seats of each row of each class
    */
-  public static void printAvailability(Model model){
+  public  void printAvailability(Model model){
     System.out.println("First");
     Chart firstChart = model.firstChart;
     for(int i = 0; i < firstChart.row; i++){
@@ -59,7 +62,7 @@ public class View{
   /*
   A manifest lists the occupied seats and the passengers seated in them
   */
-  public static void printManifest(Model model){
+  public  void printManifest(Model model){
     System.out.println("First");
     Chart firstChart = model.firstChart;
     for(int i = 0; i < firstChart.row; i++){
@@ -78,69 +81,69 @@ public class View{
     }
   }
 
-  public static void printOrderedSeat(String seat){
+  public  void printOrderedSeat(String seat){
     System.out.println("Order succeeded!\nSeat : ");
     System.out.println(seat);
   }
 
-  public static void printOrderedSeats(List<String> seats){
+  public  void printOrderedSeats(List<String> seats){
     System.out.println("Order succeeded!\n Seats : ");
     for(String seat : seats){
       System.out.println(seat);
     }
   }
-  public static void printCancelSucceed(){
+  public  void printCancelSucceed(){
     System.out.println("Cancelation succeeded!");
   }
-  public static void printPassengerDoesNotExist(){
+  public  void printPassengerDoesNotExist(){
     System.out.println("The Passenger does not exist!");
   }
-  public static void printGroupDoesNotExist(){
+  public  void printGroupDoesNotExist(){
     System.out.println("The group does not exist!");
   }
-  public static void printFailMsg(){
+  public  void printFailMsg(){
     System.out.println("Request failed!");
   }
 
 
 
 
-  public static void promptEnterOptions(){
+  public  void promptEnterOptions(){
     System.out.printf("********************\n********************\nAdd [P]assenger\nAdd [G]roup\n[C]ancel Reservations\nPrint Seating [A]vailability Chart\nPrint [M]anifest\n[Q]uit\nEnter your option: ");
   }
 
-  public static void promptEnterName(){
+  public  void promptEnterName(){
     System.out.printf("Name: ");
   }
 
 
-  public static void promptEnterServiceClass(){
+  public  void promptEnterServiceClass(){
     System.out.printf("[First] or [Economy]: ");
   }
 
 
-  public static void promptEnterSeatPreference(){
+  public  void promptEnterSeatPreference(){
     System.out.printf("[W]indow, [C]entor or [A]aisle: ");
   }
 
 
-  public static void promptEnterChangeSeatPreferenceOption(){
+  public  void promptEnterChangeSeatPreferenceOption(){
     System.out.println("The seat preference you requested does not exist!");
     System.out.printf("Would you like to change seat position? [Y] or [N]: ");
   }
 
 
-  public static void promptEnterGroupName(){
+  public  void promptEnterGroupName(){
     System.out.printf("Group Name: ");
   }
 
 
-  public static void promptEnterPassengerNames(){
+  public  void promptEnterPassengerNames(){
     System.out.printf("Please enter all passenger names seperated by comma: ");
   }
 
 
-  public static void promptCancelIndividualorGroup(){
+  public  void promptCancelIndividualorGroup(){
     System.out.printf("Cancel [I]ndividual or [G]roup: ");
   }
 

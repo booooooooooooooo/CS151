@@ -5,88 +5,89 @@ import java.util.*;
 import java.io.IOException;
 public class ReservationSystem{
   public static void main(String args[])throws IOException, ClassNotFoundException{
-    View.printWelcome();
+    View view = new View();
     Model model = new Model(args[0]);
+    view.printWelcome();
     while( true ){
-      View.promptEnterOptions();
-      String option = View.readNextLine();
-      if(option.equals("P")) interactAddPassenger(model);
-      else if(option.equals("G")) interactAddGroup(model);
-      else if(option.equals("C")) interactCancelReservation(model);
-      else if(option.equals("A")) View.printAvailability(model);
-      else if(option.equals("M")) View.printManifest(model);
+      view.promptEnterOptions();
+      String option = view.readNextLine();
+      if(option.equals("P")) interactAddPassenger(model, view);
+      else if(option.equals("G")) interactAddGroup(model, view);
+      else if(option.equals("C")) interactCancelReservation(model, view);
+      else if(option.equals("A")) view.printAvailability(model);
+      else if(option.equals("M")) view.printManifest(model);
       else if(option.equals("Q")) break;
       else continue;
     }
   }
 
-  private static void interactAddPassenger(Model model){
+  private static void interactAddPassenger(Model model, View view){
     String seat = null;
     String name;
     String serviceClass;
     String seatPreference;
     do{
-      View.promptEnterName();
-      name = View.readNextLine();
-      View.promptEnterServiceClass();
-      serviceClass = View.readNextLine();
-      View.promptEnterSeatPreference();
-      seatPreference = View.readNextLine();
+      view.promptEnterName();
+      name = view.readNextLine();
+      view.promptEnterServiceClass();
+      serviceClass = view.readNextLine();
+      view.promptEnterSeatPreference();
+      seatPreference = view.readNextLine();
     }while( !( serviceClass.equals("First") || serviceClass.equals("Economy") )
               || !( seatPreference.equals("W") || seatPreference.equals("C") || seatPreference.equals("A")) );
 
     seat = model.addPassenger(name, serviceClass, seatPreference);
 
     if(seat == null && !model.isFull()){
-      View.promptEnterChangeSeatPreferenceOption();
-      String responce = View.readNextLine();
+      view.promptEnterChangeSeatPreferenceOption();
+      String responce = view.readNextLine();
       if(responce.equals("Y")){
         seat = model.addPassenger(name, serviceClass);
       }else if(responce.equals("N")) ;
-      else View.promptEnterChangeSeatPreferenceOption();
+      else view.promptEnterChangeSeatPreferenceOption();
     }
 
-    if(seat == null) View.printFailMsg();
-    else View.printOrderedSeat(seat);
+    if(seat == null) view.printFailMsg();
+    else view.printOrderedSeat(seat);
   }
-  private static void interactAddGroup(Model model){
+  private static void interactAddGroup(Model model, View view){
     String groupName;
     List<String> names;
     String serviceClass;
-    View.promptEnterGroupName();
-    groupName = View.readNextLine();
-    View.promptEnterPassengerNames();
-    names = View.readListOfNamesFromNextLine();
+    view.promptEnterGroupName();
+    groupName = view.readNextLine();
+    view.promptEnterPassengerNames();
+    names = view.readListOfNamesFromNextLine();
     do{
-      View.promptEnterServiceClass();
-      serviceClass = View.readNextLine();
+      view.promptEnterServiceClass();
+      serviceClass = view.readNextLine();
     }while( !serviceClass.equals("First") && !serviceClass.equals("Economy"));
 
     List<String> seats = model.addGroup(groupName, names, serviceClass);
 
-    if(seats == null) View.printFailMsg();
-    else View.printOrderedSeats(seats);
+    if(seats == null) view.printFailMsg();
+    else view.printOrderedSeats(seats);
   }
 
-  private static void interactCancelReservation(Model model){
+  private static void interactCancelReservation(Model model, View view){
     String iOrG;
     do{
-      View.promptCancelIndividualorGroup();
-      iOrG = View.readNextLine();
+      view.promptCancelIndividualorGroup();
+      iOrG = view.readNextLine();
     }while( !iOrG.equals("I") && !iOrG.equals("G"));
 
     if(iOrG.equals("I")){
-      View.promptEnterName();
-      String name = View.readNextLine();
+      view.promptEnterName();
+      String name = view.readNextLine();
       boolean succeed = model.cancelPassenger(name);
-      if(succeed) View.printCancelSucceed();
-      else View.printPassengerDoesNotExist();
+      if(succeed) view.printCancelSucceed();
+      else view.printPassengerDoesNotExist();
     }else{
-      View.promptEnterGroupName();
-      String groupName = View.readNextLine();
+      view.promptEnterGroupName();
+      String groupName = view.readNextLine();
       boolean succeed = model.cancelGroup(groupName);
-      if(succeed) View.printCancelSucceed();
-      else View.printGroupDoesNotExist();
+      if(succeed) view.printCancelSucceed();
+      else view.printGroupDoesNotExist();
     }
   }
 }

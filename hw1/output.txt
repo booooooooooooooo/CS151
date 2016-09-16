@@ -1,0 +1,199 @@
+
+
+
+Welcome to SJSU airplane System!
+
+
+
+********************
+********************
+Add [P]assenger
+Add [G]roup
+[C]ancel Reservations
+Print Seating [A]vailability Chart
+Print [M]anifest
+[Q]uit
+Enter your option: Name: [First] or [Economy]: [W]indow, [C]entor or [A]aisle: Order succeeded!
+Seat :
+1A
+********************
+********************
+Add [P]assenger
+Add [G]roup
+[C]ancel Reservations
+Print Seating [A]vailability Chart
+Print [M]anifest
+[Q]uit
+Enter your option: Name: [First] or [Economy]: [W]indow, [C]entor or [A]aisle: Order succeeded!
+Seat :
+1B
+********************
+********************
+Add [P]assenger
+Add [G]roup
+[C]ancel Reservations
+Print Seating [A]vailability Chart
+Print [M]anifest
+[Q]uit
+Enter your option: Group Name: Please enter all passenger names seperated by comma: [First] or [Economy]: Request failed!
+********************
+********************
+Add [P]assenger
+Add [G]roup
+[C]ancel Reservations
+Print Seating [A]vailability Chart
+Print [M]anifest
+[Q]uit
+Enter your option: Name: [First] or [Economy]: [W]indow, [C]entor or [A]aisle: Order succeeded!
+Seat :
+2A
+********************
+********************
+Add [P]assenger
+Add [G]roup
+[C]ancel Reservations
+Print Seating [A]vailability Chart
+Print [M]anifest
+[Q]uit
+Enter your option: Group Name: Please enter all passenger names seperated by comma: [First] or [Economy]: [6, 0, 0]
+Order succeeded!
+ Seats :
+10A
+10B
+10C
+********************
+********************
+Add [P]assenger
+Add [G]roup
+[C]ancel Reservations
+Print Seating [A]vailability Chart
+Print [M]anifest
+[Q]uit
+Enter your option: Name: [First] or [Economy]: [W]indow, [C]entor or [A]aisle: Order succeeded!
+Seat :
+10E
+********************
+********************
+Add [P]assenger
+Add [G]roup
+[C]ancel Reservations
+Print Seating [A]vailability Chart
+Print [M]anifest
+[Q]uit
+Enter your option: Name: [First] or [Economy]: [W]indow, [C]entor or [A]aisle: Order succeeded!
+Seat :
+10F
+********************
+********************
+Add [P]assenger
+Add [G]roup
+[C]ancel Reservations
+Print Seating [A]vailability Chart
+Print [M]anifest
+[Q]uit
+Enter your option: Cancel [I]ndividual or [G]roup: Name: Cancelation succeeded!
+********************
+********************
+Add [P]assenger
+Add [G]roup
+[C]ancel Reservations
+Print Seating [A]vailability Chart
+Print [M]anifest
+[Q]uit
+Enter your option: Cancel [I]ndividual or [G]roup: Group Name: The group does not exist!
+********************
+********************
+Add [P]assenger
+Add [G]roup
+[C]ancel Reservations
+Print Seating [A]vailability Chart
+Print [M]anifest
+[Q]uit
+Enter your option: First
+1:  A,
+
+2:  B,
+
+Economy
+1:  D,
+
+2:  A, B, C, D, E, F,
+
+3:  A, B, C, D, E, F,
+
+4:  A, B, C, D, E, F,
+
+5:  A, B, C, D, E, F,
+
+6:  A, B, C, D, E, F,
+
+7:  A, B, C, D, E, F,
+
+8:  A, B, C, D, E, F,
+
+9:  A, B, C, D, E, F,
+
+10:  A, B, C, D, E, F,
+
+11:  A, B, C, D, E, F,
+
+12:  A, B, C, D, E, F,
+
+13:  A, B, C, D, E, F,
+
+14:  A, B, C, D, E, F,
+
+15:  A, B, C, D, E, F,
+
+16:  A, B, C, D, E, F,
+
+17:  A, B, C, D, E, F,
+
+18:  A, B, C, D, E, F,
+
+19:  A, B, C, D, E, F,
+
+20:  A, B, C, D, E, F,
+
+********************
+********************
+Add [P]assenger
+Add [G]roup
+[C]ancel Reservations
+Print Seating [A]vailability Chart
+Print [M]anifest
+[Q]uit
+Enter your option: ********************
+********************
+Add [P]assenger
+Add [G]roup
+[C]ancel Reservations
+Print Seating [A]vailability Chart
+Print [M]anifest
+[Q]uit
+Enter your option: First
+1B : Henry Barron
+2A : Helen Garrett
+Economy
+10A : Birdie Ross
+10B : David Johnson
+10C : Aldo Luce
+10E : Jackie Meador
+10F : Karri Johnson
+********************
+********************
+Add [P]assenger
+Add [G]roup
+[C]ancel Reservations
+Print Seating [A]vailability Chart
+Print [M]anifest
+[Q]uit
+Enter your option: ********************
+********************
+Add [P]assenger
+Add [G]roup
+[C]ancel Reservations
+Print Seating [A]vailability Chart
+Print [M]anifest
+[Q]uit
+Enter your option:
