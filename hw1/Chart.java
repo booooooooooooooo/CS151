@@ -49,6 +49,18 @@ public class Chart{
       seatName.add(temp);
     }
   }
+
+  public String addPassenger(String name){
+    for(int i = 0; i < row; i++){
+      for(int j = 0 ; j < col; j++){
+        if(panel.get(i).get(j) == null ){
+          panel.get(i).set(j, new Passenger(name) );
+          return seatName.get(i).get(j);
+        }
+      }
+    }
+    return null;
+  }
   /**
   if succeed, update panel and return seat number
   else return null

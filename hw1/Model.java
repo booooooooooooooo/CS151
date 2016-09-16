@@ -40,8 +40,13 @@ public class Model {
     }catch(IOException e){}
 		fos.close();
   }
-  public String addFirstClassPassenger(String name, String seatPreference){
-    return firstChart.addPassenger(name, seatPreference);
+  public String addPassenger(String name, String serviceClass){
+    if(serviceClass.equals("First")) return firstChart.addPassenger(name);
+    else return economyChart.addPassenger(name);
+  }
+  public String addPassenger(String name, String serviceClass, String seatPreference){
+    if(serviceClass.equals("First")) return firstChart.addPassenger(name, seatPreference);
+    else return economyChart.addPassenger(name, seatPreference);
   }
   public String addEcoClassPassenger(String name, String seatPreference){
     return economyChart.addPassenger(name, seatPreference);
@@ -57,5 +62,8 @@ public class Model {
   }
   public boolean cancelGroup(String groupName){
     return firstChart.cancelGroup(groupName) || economyChart.cancelGroup(groupName);
+  }
+  public boolean isFull(){
+    return firstChart.getNumberOfAvailableSeats() == 0 && economyChart.getNumberOfAvailableSeats() == 0;
   }
 }

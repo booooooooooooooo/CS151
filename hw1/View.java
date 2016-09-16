@@ -11,4 +11,22 @@ public class View{
     }
     System.out.println();
   }
+
+  printOptions
+
+  printAvailability
+
+  printManifest
+
+  promptName
+
+  promptServiceClass
+
+  promptSeatPreference
+
+  printRequestFail
+
+  printSeat
+
+  promptChangeSeatPreference
 }
