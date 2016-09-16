@@ -1,5 +1,8 @@
+package hw1;
+
 import java.util.*;
-class Chart{
+
+public class Chart{
   private List<List<Passenger>> panel;
   private List<List<String>> seatName;
   private int row;
@@ -14,7 +17,7 @@ class Chart{
       col = 6;
     }else{
       System.out.println("Invalid Input!");
-      returnl
+      return;
     }
     panel = new ArrayList<List<Passenger>>(row);
     for(int i = 0; i < row; i++){
@@ -30,20 +33,18 @@ class Chart{
   /*
   Called by constructer
   */
-  private void assignSeatNumber(serviceClass){
-    char[] colLetter;
-    char[] rowLetter;
+  private void assignSeatNumber(String serviceClass){
+    int startRow;
+    char startCol = 'A';
     if(serviceClass.equals("First")){
-      char[] colLetter = {'A', 'B', 'C', 'D'};
-      char[] rowLetter = {'1', '2'};
-    }else if(serviceClass.equals("Economy")){
-      char[] colLetter = {'A', 'B', 'C', 'D', 'E', 'F'};
-      char[] rowLetter = {'10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29'};
+      startRow = 1;
+    }else{ // serviceClass.equals("Economy")
+      startRow = 10;
     }
     for(int i = 0; i < row; i++){
       List<String> temp = new ArrayList<String>(col);
       for(int j = 0; j < col; j++){
-        temp.add(rowLetter[i].toString() + colLetter[i]);
+        temp.add( String.valueOf(startRow + i) + (char)(startCol + j));
       }
       seatName.add(temp);
     }
@@ -55,13 +56,13 @@ class Chart{
   public String addPassenger(String name, String seatPreference){
     if(seatPreference.equals("W")){
       for(int i = 0; i < row; i++){
-        if(panel[i][0] == null){
-          panel[i][0] = new Passenger(name);
-          return seatName[i][0];
+        if(panel.get(i).get(0) == null){
+          panel.get(i).set(0, new Passenger(name) );
+          return seatName.get(i).get(0);
         }
-        if(panel[i][col - 1] == null){
-          panel[i]][col - 1] = new Passenger(name);
-          return seatName[i][col - 1];
+        if(panel.get(i).get(col - 1) == null){
+          panel.get(i).set(col - 1, new Passenger(name));
+          return seatName.get(i).get(col - 1);
         }
       }
       return null;
@@ -69,9 +70,9 @@ class Chart{
     if(seatPreference.equals("C")){
       for(int i = 0; i < row; i++){
         for(int j = 0 ; j < col; j++){
-          if(j != 0 && j != col - 1 && j != col / 2 - 1 && j != col / 2 && panel[i][j] == null){
-            panel[i][j] = new Passenger(name);
-            return seatName[i][j];
+          if( j != 0 && j != col - 1 && j != col / 2 - 1 && j != col / 2 && panel.get(i).get(j) == null ){
+            panel.get(i).set(j, new Passenger(name) );
+            return seatName.get(i).get(j);
           }
         }
       }
@@ -79,17 +80,18 @@ class Chart{
     }
     if(seatPreference.equals("A")){
       for(int i = 0; i < row; i++){
-        if(panel[i][col / 2 - 1] == null){
-          panel[i][col / 2 - 1] = new Passenger(name);
-          return seatName[i][col / 2 - 1];
+        if(panel.get(i).get(col / 2 - 1) == null){
+          panel.get(i).set(col / 2 - 1, new Passenger(name) );
+          return seatName.get(i).get(col / 2 - 1);
         }
-        if(panel[i][col / 2] == null){
-          panel[i]][col / 2] = new Passenger(name);
-          return seatName[i][col / 2];
+        if(panel.get(i).get(col / 2) == null){
+          panel.get(i).set(col / 2, new Passenger(name) );
+          return seatName.get(i).get(col / 2);
         }
       }
       return null;
     }
+    return null;
   }
   /**
   if succeed update panel and return List of seat numbers
@@ -101,15 +103,17 @@ class Chart{
     int count = 0;
     while( count < names.size()){
       int[] next = findLargestAdjList();
-      int i = next[0];
-      int j = next[1];
-      int len = next[2];
-      for(int k = 0; k < len; k++){
-        panel.get(i).set(j + k, new Passenger(groupName, names.get(count)));
+      System.out.println(Arrays.toString(next));
+      int len = next[0];
+      int i = next[1];
+      int j = next[2];
+      for(int k = 0; k < len && count < names.size(); k++){
+        panel.get(i).set(j + k, new Passenger(names.get(count), groupName));
         seats.add(seatName.get(i).get(j + k));
         count++;
       }
     }
+    return seats;
   }
   /**
   if succeed update panel and return true
@@ -166,9 +170,17 @@ class Chart{
       int tempLen = 0;
       int j = 0;
       while( j < col){
-        if(panel.get(i).get(j) == null)
+        if(panel.get(i).get(j) == null && j != col - 1){
           tempLen++;
-        else{
+        }else if(panel.get(i).get(j) == null && j == col - 1){
+          tempLen++;
+          if(tempLen > next[0]){
+            next[0] = tempLen;
+            next[1] = i;
+            next[2] = j + 1 - tempLen;
+          }
+          tempLen = 0;
+        }else{
           if(tempLen > next[0]){
             next[0] = tempLen;
             next[1] = i;

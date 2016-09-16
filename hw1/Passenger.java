@@ -1,3 +1,4 @@
+package hw1;
 class Passenger{
   String name;
   String group;
@@ -14,5 +15,9 @@ class Passenger{
   }
   public String getGroupName(){
     return this.group;
+  }
+  @Override
+  public String toString(){
+    return this.name;
   }
 }
