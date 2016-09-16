@@ -5,8 +5,10 @@ import java.util.*;
 public class Chart{
   public List<List<Passenger>> panel;
   public List<List<String>> seatName;
-  private int row;
-  private int col;
+  public List<String> rowName;
+  public List<String> colName;
+  public int row;
+  public int col;
 
   public Chart(String serviceClass){
     if(serviceClass.equals("First")){
@@ -27,13 +29,16 @@ public class Chart{
       }
       panel.add(temp);
     }
-    seatName = new ArrayList<List<String>>(row);
     assignSeatNumber(serviceClass);
   }
   /*
   Called by constructer
   */
   private void assignSeatNumber(String serviceClass){
+    seatName = new ArrayList<List<String>>(row);
+    rowName = new ArrayList<String>();
+    colName = new ArrayList<String>();
+
     int startRow;
     char startCol = 'A';
     if(serviceClass.equals("First")){
@@ -41,6 +46,7 @@ public class Chart{
     }else{ // serviceClass.equals("Economy")
       startRow = 10;
     }
+
     for(int i = 0; i < row; i++){
       List<String> temp = new ArrayList<String>(col);
       for(int j = 0; j < col; j++){
@@ -48,6 +54,15 @@ public class Chart{
       }
       seatName.add(temp);
     }
+
+    for(int i = 0; i < row; i++){
+      rowName.add(String.valueOf(i + 1));
+    }
+
+    for(int j = 0; j < col; j++){
+      colName.add("" + (char)(startCol + j));
+    }
+
   }
 
   /*
@@ -170,11 +185,11 @@ public class Chart{
   /*
   Below are Utilities
   */
-  
+
   /*
   Get number of available seats
   */
-  private int getNumberOfAvailableSeats(){
+  public int getNumberOfAvailableSeats(){
     int count = 0;
     for(int i = 0; i < row; i++){
       for(int j = 0; j < col; j++){
