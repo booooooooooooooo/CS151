@@ -1,3 +1,6 @@
+/**
+ Store a passenger's personal name and group name.
+ */
 // package hw1;
 
 import java.io.Serializable;

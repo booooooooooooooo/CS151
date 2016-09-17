@@ -1,3 +1,7 @@
+/**
+ Store order infomation in memory. Support adding and cancelling individual passenger or group.
+ */
+
 // package hw1;
 
 import java.util.*;
@@ -31,9 +35,9 @@ public class Chart{
     }
     assignSeatNumber(serviceClass);
   }
-  /*
-  Called by constructer
-  */
+  /**
+   Called by constructer
+   */
   private void assignSeatNumber(String serviceClass){
     seatName = new ArrayList<List<String>>(row);
     rowName = new ArrayList<String>();
@@ -65,9 +69,9 @@ public class Chart{
 
   }
 
-  /*
-  Add passenger to arbitary available seat
-  */
+  /**
+   Add passenger at arbitary available seat
+   */
   public String addPassenger(String name){
     for(int i = 0; i < row; i++){
       for(int j = 0 ; j < col; j++){
@@ -80,10 +84,8 @@ public class Chart{
     return null;
   }
   /**
-  Add passenger to specific seat preference
-  if succeed, update panel and return seat number
-  else return null
-  */
+   Add passenger at specific seat type.
+   */
   public String addPassenger(String name, String seatPreference){
     if(seatPreference.equals("W")){
       for(int i = 0; i < row; i++){
@@ -125,10 +127,8 @@ public class Chart{
     return null;
   }
   /**
-  Add group.
-  if succeed update panel and return List of seat numbers
-  else return null
-  */
+   Add group.
+   */
   public List<String> addGroup(String groupName, List<String> names){
     if(getNumberOfAvailableSeats() < names.size()) return null;
     List<String> seats = new ArrayList<String>(names.size());
@@ -148,10 +148,8 @@ public class Chart{
     return seats;
   }
   /**
-  Cancel a individual Passenger
-  if succeed update panel and return true
-  else return false
-  */
+   Cancel a individual Passenger.
+   */
   public boolean cancelPassenger(String name){
     for(int i = 0; i < row; i++){
       for(int j = 0; j < col; j++){
@@ -165,10 +163,8 @@ public class Chart{
     return false;
   }
   /**
-  Cancel Group
-  if succeed update panel and return true
-  else return false
-  */
+   Cancel Group.
+   */
   public boolean cancelGroup(String groupName){
     boolean groupExistence = false;
     for(int i = 0; i < row; i++){
@@ -182,13 +178,11 @@ public class Chart{
     }
     return groupExistence;
   }
-  /*
-  Below are Utilities
-  */
 
-  /*
-  Get number of available seats
-  */
+
+  /**
+   Get number of available seats.
+   */
   public int getNumberOfAvailableSeats(){
     int count = 0;
     for(int i = 0; i < row; i++){
@@ -198,11 +192,11 @@ public class Chart{
     }
     return count;
   }
-  /*
-  Find the length of largest adjacency list as long as its start row index and colume index
-  Store results in array
-  Didn't consider reducing complexity.
-  */
+  /**
+   Find the length of largest adjacency list as long as its start row index and colume index
+   Store results in array.
+   Didn't consider reducing complexity.
+   */
   private int[] findLargestAdjList(){
     int[] next = {0, -1, -1}; // len, rowIndex, colIndex
     for(int i = 0; i < row; i++){
@@ -232,21 +226,21 @@ public class Chart{
     }
     return next;
   }
-  /*
-  Get row
-  */
+  /**
+   Get row
+   */
   public int getRow(){
     return this.row;
   }
-  /*
-  Get colume
-  */
+  /**
+   Get colume
+   */
   public int getCol(){
     return this.col;
   }
-  /*
-  Get panel
-  */
+  /**
+   Get panel
+   */
   public List<List<Passenger>> getPanel(){
     return this.panel;
   }

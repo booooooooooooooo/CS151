@@ -1,3 +1,7 @@
+/**
+ Process all data manipulation.
+ */
+ 
 // package hw1;
 
 import java.util.*;
@@ -17,9 +21,10 @@ public class Model {
     economyChart = new Chart("Economy");
     readInOrderInfoFromFile(path);
   }
-  /*
-  Serialize in data frome File
-  */
+
+  /**
+   Serialize in data frome File.
+   */
   private void readInOrderInfoFromFile(String path)throws IOException,
 			ClassNotFoundException{
     File f = new File(path);
@@ -33,9 +38,10 @@ public class Model {
 		ois.close();
     fis.close();
   }
-  /*
-  Serialize data out to File
-  */
+
+  /**
+   Serialize data out to File.
+   */
   public void writeOrderInfoToFile(String path)throws IOException{
     FileOutputStream fos = new FileOutputStream(path);
 		ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -46,41 +52,41 @@ public class Model {
     oos.close();
 		fos.close();
   }
-  /*
-  Add Passenger of arbitrary available seat
-  */
+  /**
+   Add Passenger at arbitrary available seat
+   */
   public String addPassenger(String name, String serviceClass){
     if(serviceClass.equals("First")) return firstChart.addPassenger(name);
     else return economyChart.addPassenger(name);
   }
-  /*
-  Add Passenger of specific seat preference
-  */
+  /**
+   Add Passenger at specific seat type.
+   */
   public String addPassenger(String name, String serviceClass, String seatPreference){
     if(serviceClass.equals("First")) return firstChart.addPassenger(name, seatPreference);
     else return economyChart.addPassenger(name, seatPreference);
   }
-  /*
-  Add group
-  */
+  /**
+   Add group
+   */
   public List<String>  addGroup(String groupName, List<String> names, String serviceClass){
     if(serviceClass.equals("First")) return firstChart.addGroup(groupName, names);
     else return economyChart.addGroup(groupName, names);
   }
-  /*
-  Cancel Passenger
-  */
+  /**
+   Cancel individual passenger.
+   */
   public boolean cancelPassenger(String name){
     return firstChart.cancelPassenger(name) || economyChart.cancelPassenger(name);
   }
-  /*
-  Cancel groupName
-  */
+  /**
+   Cancel group passengers.
+   */
   public boolean cancelGroup(String groupName){
     return firstChart.cancelGroup(groupName) || economyChart.cancelGroup(groupName);
   }
 
-  /*Utilities below*/
+
   public boolean isFull(){
     return firstChart.getNumberOfAvailableSeats() == 0 && economyChart.getNumberOfAvailableSeats() == 0;
   }

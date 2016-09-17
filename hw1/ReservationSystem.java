@@ -1,3 +1,7 @@
+/**
+ Controllor of everything.
+ */
+
 // package hw1;
 
 import java.util.*;
@@ -20,7 +24,9 @@ public class ReservationSystem{
       else continue;
     }
   }
-
+  /**
+   Interacte with user to get order information. Add order to Model.
+   */
   private static void interactAddPassenger(Model model, View view){
     String seat = null;
     String name;
@@ -38,18 +44,22 @@ public class ReservationSystem{
 
     seat = model.addPassenger(name, serviceClass, seatPreference);
 
-    if(seat == null && !model.isFull()){
-      view.promptEnterChangeSeatPreferenceOption();
-      String responce = view.readNextLine();
-      if(responce.equals("Y")){
-        seat = model.addPassenger(name, serviceClass);
-      }else if(responce.equals("N")) ;
-      else view.promptEnterChangeSeatPreferenceOption();
-    }
+    // if(seat == null && !model.isFull()){
+    //   view.promptEnterChangeSeatPreferenceOption();
+    //   String responce = view.readNextLine();
+    //   if(responce.equals("Y")){
+    //     seat = model.addPassenger(name, serviceClass);
+    //   }else if(responce.equals("N")) ;
+    //   else view.promptEnterChangeSeatPreferenceOption();
+    // }
 
     if(seat == null) view.printFailMsg();
     else view.printOrderedSeat(seat);
   }
+
+  /**
+   Interacte with user to get order information. Add order to Model.
+   */
   private static void interactAddGroup(Model model, View view){
     String groupName;
     List<String> names;
@@ -69,6 +79,9 @@ public class ReservationSystem{
     else view.printOrderedSeats(seats);
   }
 
+  /**
+   Interacte with user to get order information. Add order to Model.
+   */
   private static void interactCancelReservation(Model model, View view){
     String iOrG;
     do{

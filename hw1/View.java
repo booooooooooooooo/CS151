@@ -1,3 +1,7 @@
+/**
+ Process all input and output.
+ */
+
 // package hw1;
 import java.util.*;
 public class View{
@@ -32,60 +36,73 @@ public class View{
     }
     System.out.println();
   }
-  /*
-   A seat availability chart shows the available seats of each row of each class
+  /**
+   Print a seat availability chart which shows the available seats of each row of each class.
+   !A little unharmony with design since I realize I should add choosing class preference after finishing all stuff.
    */
   public  void printAvailability(Model model){
+    System.out.printf("Class Preference:");
+    String classPreference = readNextLine();
+    if(classPreference.equals("First")){
+      System.out.println("First");
+      Chart firstChart = model.firstChart;
+      for(int i = 0; i < firstChart.row; i++){
+        boolean printComma = false;
+        System.out.printf("%d: ", i + 1);
+        for(int j = 0; j < firstChart.col; j++){
+          if(firstChart.panel.get(i).get(j) == null){
+            if(!printComma) printComma = true;
+            else System.out.printf(",");
+            System.out.printf(" %s", firstChart.colName.get(j));
+          }
 
-    System.out.println("First");
-    Chart firstChart = model.firstChart;
-    for(int i = 0; i < firstChart.row; i++){
-      boolean printComma = false;
-      System.out.printf("%d: ", i + 1);
-      for(int j = 0; j < firstChart.col; j++){
-        if(firstChart.panel.get(i).get(j) == null){
-          if(!printComma) printComma = true;
-          else System.out.printf(",");
-          System.out.printf(" %s", firstChart.colName.get(j));
         }
-
+        System.out.println("\n");
       }
-      System.out.println("\n");
+    }else{
+      System.out.println("Economy");
+      Chart economyChart = model.economyChart;
+      for(int i = 0; i < economyChart.row; i++){
+        boolean printComma = false;
+        System.out.printf("%d: ", i + 1);
+        for(int j = 0; j < economyChart.col; j++){
+          if(economyChart.panel.get(i).get(j) == null){
+            if(!printComma) printComma = true;
+            else System.out.printf(",");
+            System.out.printf(" %s", economyChart.colName.get(j));
+          }
+        }
+        System.out.println("\n");
+      }
     }
 
-    System.out.println("Economy");
-    Chart economyChart = model.economyChart;
-    for(int i = 0; i < economyChart.row; i++){
-      boolean printComma = false;
-      System.out.printf("%d: ", i + 1);
-      for(int j = 0; j < economyChart.col; j++){
-        if(economyChart.panel.get(i).get(j) == null){
-          if(!printComma) printComma = true;
-          else System.out.printf(",");
-          System.out.printf(" %s", economyChart.colName.get(j));
-        }
-      }
-      System.out.println("\n");
-    }
+
+
   }
-  /*
-  A manifest lists the occupied seats and the passengers seated in them
-  */
+  /**
+   Print the manifest list which shows the occupied seats and the passengers seated in them.
+   !A little unharmony with design since I realize I should add choosing class preference after finishing all stuff.
+   */
   public  void printManifest(Model model){
-    System.out.println("First");
-    Chart firstChart = model.firstChart;
-    for(int i = 0; i < firstChart.row; i++){
-      for(int j = 0; j < firstChart.col; j++){
-        if( !(firstChart.panel.get(i).get(j) == null))
-          System.out.printf("%s : %s\n", firstChart.seatName.get(i).get(j), firstChart.panel.get(i).get(j)  );
+    System.out.printf("Class Preference:");
+    String classPreference = readNextLine();
+    if(classPreference.equals("First")){
+      System.out.println("First");
+      Chart firstChart = model.firstChart;
+      for(int i = 0; i < firstChart.row; i++){
+        for(int j = 0; j < firstChart.col; j++){
+          if( !(firstChart.panel.get(i).get(j) == null))
+            System.out.printf("%s : %s\n", firstChart.seatName.get(i).get(j), firstChart.panel.get(i).get(j)  );
+        }
       }
-    }
-    System.out.println("Economy");
-    Chart economyChart = model.economyChart;
-    for(int i = 0; i < economyChart.row; i++){
-      for(int j = 0; j < economyChart.col; j++){
-        if( !(economyChart.panel.get(i).get(j) == null))
-          System.out.printf("%s : %s\n", economyChart.seatName.get(i).get(j), economyChart.panel.get(i).get(j)  );
+    }else{
+      System.out.println("Economy");
+      Chart economyChart = model.economyChart;
+      for(int i = 0; i < economyChart.row; i++){
+        for(int j = 0; j < economyChart.col; j++){
+          if( !(economyChart.panel.get(i).get(j) == null))
+            System.out.printf("%s : %s\n", economyChart.seatName.get(i).get(j), economyChart.panel.get(i).get(j)  );
+        }
       }
     }
   }
