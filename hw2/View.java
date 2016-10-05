@@ -9,44 +9,50 @@ public class View {
   public static String[] arrayOfDays = {"Su", "Mo", "Tu", "We",
                                         "Th", "Fr", "Sa"};
 
-  // public static void displayMainMenu(Calendar now, List<Event> events) {
-  //   displayMonthWithEventHighLighted(now, events);
+  // public static void displayMainMenu(Calendar now, List<Event> eventListOfMonth) {
+  //   displayMonthWithEventHighLighted(now, eventListOfMonth);
   //   // TODO
   // }
 
   public static void displayMonthWithEventHighLighted(Calendar cal,
-                                                      List<Event> events) {
-    System.out.print("         ");
+                                                      List<Event> eventListOfMonth) {
+
+    int myMonth = cal.get(cal.MONTH);
+    cal.set(cal.DAY_OF_MONTH, 1);
+
+    System.out.print("       ");
     System.out.printf(arrayOfMonths[cal.get(cal.MONTH)]);
     System.out.print("  ");
     System.out.println(cal.get(cal.YEAR));
+
     for (int i = 0; i < arrayOfDays.length; i++) {
       System.out.printf("%4s", arrayOfDays[i]);
     }
     System.out.println();
 
-    cal.set(cal.DAY_OF_MONTH, 1);
-    int myMonth = cal.get(cal.MONTH);
-    int startDayOfWeek = cal.get(cal.DAY_OF_WEEK);
-
-    int dayOfWeek = startDayOfWeek;
-    for (int j = 0; j <= startDayOfWeek; j++) {
+    for (int j = 1; j < cal.get(cal.DAY_OF_WEEK); j++) {
       System.out.print("    ");
     }
-
+    int i = 0; // tail of eventListOfMonth
     while (myMonth == cal.get(cal.MONTH)) {
-      // TODO: hightlight day which has event
-      System.out.printf("%4d", cal.get(cal.DAY_OF_MONTH));
-      cal.add(cal.DAY_OF_MONTH, 1);
-      dayOfWeek++;
-      if ((dayOfWeek + 1) % 7 == 0)
+      //hightlight day which has event
+      if (i < eventListOfMonth.size() &&
+          eventListOfMonth.get(i).dayOfMonth == cal.get(cal.DAY_OF_MONTH)) {
+        System.out.printf("%3d\"", cal.get(cal.DAY_OF_MONTH));
+        while (i < eventListOfMonth.size() &&
+               eventListOfMonth.get(i).dayOfMonth == cal.get(cal.DAY_OF_MONTH))
+          i++;
+      } else
+        System.out.printf("%4d", cal.get(cal.DAY_OF_MONTH));
+      if (cal.get(cal.DAY_OF_WEEK) % 7 == 0)
         System.out.println();
+      cal.add(cal.DAY_OF_MONTH, 1);
     }
     System.out.println();
   }
   //
   // public static void displayDayWithEvnetList(Calendar anytime, List<Event>
-  // events) {
+  // eventListOfDay) {
   //   // TODO
   // }
   //
