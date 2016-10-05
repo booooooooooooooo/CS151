@@ -75,10 +75,10 @@ public class Model {
   public List<Event> getWholeEventList() { return events; }
 
   public void createEvent(String title, int year, int month, int dayOfMonth,
-                          int start_hour_of_day, int start_minute) {
+                          int startHourOfDay, int startMinute) {
 
-    Event event = new Event(title, year, month, dayOfMonth, start_hour_of_day,
-                            start_minute);
+    Event event = new Event(title, year, month, dayOfMonth, startHourOfDay,
+                            startMinute);
     int i = 0;
     for (i = 0; i < events.size(); i++) {
       Evnet cur = events.get(i);
@@ -95,10 +95,10 @@ public class Model {
   }
 
   public void createEvent(String title, int year, int month, int dayOfMonth,
-                          int start_hour_of_day, int start_minute,
-                          int end_hour_of_day, int end_minute) {
-    Event event = new Event(title, year, month, dayOfMonth, start_hour_of_day,
-                            start_minute, end_hour_of_day, end_minute);
+                          int startHourOfDay, int startMinute,
+                          int endHourOfDay, int endMinute) {
+    Event event = new Event(title, year, month, dayOfMonth, startHourOfDay,
+                            startMinute, endHourOfDay, endMinute);
     int i = 0;
     for (i = 0; i < events.size(); i++) {
       Evnet cur = events.get(i);
@@ -141,13 +141,13 @@ public class Model {
 
   public void delteAllEvents() { events.clear(); }
 
-  //TODO: keep or delete
+  // TODO: keep or delete
   public Calendar getGreCalOfNow() {
     return new GregorianCalendar(); // capture today
   }
-  //TODO: keep or delete
+  // TODO: keep or delete
   public Calendar getGreCalInstanceOfGivenTime(int year, int month,
-                                              int dayOfMonth) {
+                                               int dayOfMonth) {
     return new GregorianCalendar(year, month, dayOfMonth);
   }
 }

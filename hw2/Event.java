@@ -6,33 +6,33 @@ public class Event implements Comparable<Event> {
   public int year;  // e.g 2016
   public int month; // 0 - 11
   public int dayOfMonth;
-  public int day_of_week; // 1 - 7
-  public int start_hour_of_day;
-  public int start_minute;
-  public int end_hour_of_day;
-  public int end_minute;
-  public Evnet(String title, int year, int month, int dayOfMonth,
-               int start_hour_of_day, int start_minute, int end_hour_of_day,
-               int end_minute) {
+  public int dayOfWeek; // 1 - 7
+  public int startHourOfDay;
+  public int startMinute;
+  public int endHourOfDay;
+  public int endMinute;
+  public Event(String title, int year, int month, int dayOfMonth,
+               int startHourOfDay, int startMinute, int endHourOfDay,
+               int endMinute) {
     this.title = title;
     this.year = year;
     this.month = month;
     this.dayOfMonth = dayOfMonth;
-    this.start_hour_of_day = start_hour_of_day;
-    this.start_minute = start_minute;
-    this.end_hour_of_day = end_hour_of_day;
-    this.end_minute = end_minute;
+    this.startHourOfDay = startHourOfDay;
+    this.startMinute = startMinute;
+    this.endHourOfDay = endHourOfDay;
+    this.endMinute = endMinute;
   }
   public Event(String title, int year, int month, int dayOfMonth,
-               int start_hour_of_day, int start_minute) {
+               int startHourOfDay, int startMinute) {
     this.title = title;
     this.year = year;
     this.month = month;
     this.dayOfMonth = dayOfMonth;
-    this.start_hour_of_day = start_hour_of_day;
-    this.start_minute = start_minute;
-    this.end_hour_of_day = start_hour_of_day;
-    this.end_minute = start_minute;
+    this.startHourOfDay = startHourOfDay;
+    this.startMinute = startMinute;
+    this.endHourOfDay = startHourOfDay;
+    this.endMinute = startMinute;
   }
   @Override
   public int compareTo(Event other) {
@@ -46,19 +46,19 @@ public class Event implements Comparable<Event> {
     if (month > other.month)
       return 1;
 
-    if (day_in_month < other.day_in_month)
+    if (dayOfMonth < other.dayOfMonth)
       return -1;
-    if (day_in_month > other.day_in_month)
+    if (dayOfMonth > other.dayOfMonth)
       return 1;
 
-    if (start_hour_of_day < other.start_hour_of_day)
+    if (startHourOfDay < other.startHourOfDay)
       return -1;
-    if (start_hour_of_day > other.start_hour_of_day)
+    if (startHourOfDay > other.startHourOfDay)
       return 1;
 
-    if (minute < other.minute)
+    if (startMinute < other.startMinute)
       return -1;
-    if (minute > other.minute)
+    if (startMinute > other.startMinute)
       return 1;
 
     return 0;
