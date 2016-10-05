@@ -10,12 +10,8 @@ import java.io.IOException;
 
 public class Model {
   private List<Event> events;
-  private GregorianCalendar greCalToday;
 
-  public Model() {
-    events = new ArrayList<Event>();
-    greCalToday = new GregorianCalendar(); // capture today
-  }
+  public Model() { events = new ArrayList<Event>(); }
 
   public void loadEventsFromFile(String path) {
     File f = new File(filePathString);
@@ -51,7 +47,7 @@ public class Model {
     List<Event> eventListOfDay = new ArrayList<Event>();
     int year = calendar.get(Calendar.YEAR);
     int month = calendar.get(Calendar.MONTH); // 0 - 11
-    int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
+    int dayOfMonth = calendar.get(Calendar.dayOfMonth);
     int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // 1 - 7, sun - saturday
     for (int i = 0; i < events.size(); i++) {
       Event cur = events.get(i);
@@ -78,10 +74,10 @@ public class Model {
 
   public List<Event> getWholeEventList() { return events; }
 
-  public void createEvent(String title, int year, int month, int day_of_month,
+  public void createEvent(String title, int year, int month, int dayOfMonth,
                           int start_hour_of_day, int start_minute) {
 
-    Event event = new Event(title, year, month, day_of_month, start_hour_of_day,
+    Event event = new Event(title, year, month, dayOfMonth, start_hour_of_day,
                             start_minute);
     int i = 0;
     for (i = 0; i < events.size(); i++) {
@@ -98,10 +94,10 @@ public class Model {
     events.set(i, event);
   }
 
-  public void createEvent(String title, int year, int month, int day_of_month,
+  public void createEvent(String title, int year, int month, int dayOfMonth,
                           int start_hour_of_day, int start_minute,
                           int end_hour_of_day, int end_minute) {
-    Event event = new Event(title, year, month, day_of_month, start_hour_of_day,
+    Event event = new Event(title, year, month, dayOfMonth, start_hour_of_day,
                             start_minute, end_hour_of_day, end_minute);
     int i = 0;
     for (i = 0; i < events.size(); i++) {
@@ -118,13 +114,13 @@ public class Model {
     events.set(i, event);
   }
 
-  public void deleteDayEvent(int year, int month, int day_of_month) {
+  public void deleteDayEvent(int year, int month, int dayOfMonth) {
     int start = -1;
     int end = -1; // [start, end)
     for (int i = 0; i < events.size(); i++) {
       Event cur = events.get(i);
       if (cur.year == year && cur.month == month &&
-          cur.day_of_month == day_of_month) {
+          cur.dayOfMonth == dayOfMonth) {
         if (start == -1)
           start = i;
       } else {
@@ -145,9 +141,13 @@ public class Model {
 
   public void delteAllEvents() { events.clear(); }
 
-  public Calendar getGreCalInstanceOfToday() { return greCalToday; }
-  public Calendar getGreCalInstanceOfGivenDay(int year, int month,
-                                              int day_in_month) {
-    // TODO
+  //TODO: keep or delete
+  public Calendar getGreCalOfNow() {
+    return new GregorianCalendar(); // capture today
+  }
+  //TODO: keep or delete
+  public Calendar getGreCalInstanceOfGivenTime(int year, int month,
+                                              int dayOfMonth) {
+    return new GregorianCalendar(year, month, dayOfMonth);
   }
 }

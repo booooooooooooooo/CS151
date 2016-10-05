@@ -1,15 +1,15 @@
 import java.util.Scanner;
 public class View {
-  public static displayMainMenu(Calendar today) {
-    displayMonthWithEventHighLighted(today);
+  public static displayMainMenu(Calendar now, List<Event> events) {
+    displayMonthWithEventHighLighted(now, events);
     // TODO
   }
 
-  public static displayMonthWithEventHighLighted(Calendar anyDay) {
+  public static displayMonthWithEventHighLighted(Calendar anytime, List<Event> events) {
     // TODO
   }
 
-  public static displayDayWithEvnetList(Calendar anyDay) {
+  public static displayDayWithEvnetList(Calendar anytime) {
     // TODO
   }
 
