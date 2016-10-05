@@ -81,20 +81,23 @@ public class Model {
 
     Event event =
         new Event(title, year, month, dayOfMonth, startHourOfDay, startMinute);
-    events.add(event);
-    // int i = 0;
-    // for (i = 0; i < events.size(); i++) {
-    //   Event cur = events.get(i);
-    //   if (event.compareTo(cur) < 0)
-    //     i++;
-    //   else
-    //     break;
-    // }
-    // events.add(null);
-    // for (int j = events.size() - 1; j > i; j--) {
-    //   events.set(j, events.get(j - 1));
-    // }
-    // events.set(i, event);
+    int i = 0;
+    // System.out.printf("i : %d\n", i);
+    // System.out.printf("List size : %d\n", events.size());
+    for (i = 0; i < events.size(); i++) {
+      Event cur = events.get(i);
+      if (cur.compareTo(event) < 0)
+        continue;
+      else
+        break;
+    }
+    events.add(null);
+    // System.out.printf("i : %d\n", i);
+    // System.out.printf("List size : %d\n", events.size());
+    for (int j = events.size() - 1; j > i; j--) {
+      events.set(j, events.get(j - 1));
+    }
+    events.set(i, event);
   }
 
   public void createEvent(String title, int year, int month, int dayOfMonth,
@@ -119,24 +122,21 @@ public class Model {
 
   public void deleteDayEvent(int year, int month, int dayOfMonth) {
     int start = -1;
-    int end = -1; // [start, end)
+    int end = -1; // [start, end]
     for (int i = 0; i < events.size(); i++) {
       Event cur = events.get(i);
       if (cur.year == year && cur.month == month &&
           cur.dayOfMonth == dayOfMonth) {
         if (start == -1)
           start = i;
-      } else {
-        if (start != -1 && end == -1)
-          end = i;
+        end = i;
       }
-
-      if (start != -1 && end != -1)
-        break;
     }
-    for (int i = end; i < events.size(); i++) {
-      events.set(start, events.get(end));
-      end++;
+    if (start == -1 && end == -1)
+      return;
+
+    for (int i = end + 1; i < events.size(); i++) {
+      events.set(start, events.get(i));
       start++;
     }
     for (int i = events.size() - 1; i >= start; i--) {
