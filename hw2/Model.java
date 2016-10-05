@@ -1,5 +1,6 @@
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileInputStream;
@@ -9,12 +10,12 @@ import java.io.ObjectOutputStream;
 import java.io.IOException;
 
 public class Model {
-  private List<Event> events;
+  public List<Event> events;
 
   public Model() { events = new ArrayList<Event>(); }
 
   public void loadEventsFromFile(String path) {
-    File f = new File(filePathString);
+    File f = new File(path);
     if (!f.exists() && !f.isDirectory()) {
       View.promptFirstRun();
     } else {
@@ -22,33 +23,34 @@ public class Model {
         FileInputStream fis = new FileInputStream(path);
         ObjectInputStream ois = new ObjectInputStream(fis);
         events = (List<Event>)ois.readObject();
-      } catch (IOException e1, ClassNotFoundException e2) {
-        System.out.println("Error loading data!");
+        ois.close();
+        fis.close();
+      } catch (IOException e1) {
+        System.out.println("Error loading data!" + e1);
+      } catch (ClassNotFoundException e2) {
+        System.out.println("Class not found!" + e2);
       }
-      ois.close();
-      fis.close();
     }
   }
 
   public void writeEventsToFile(String path) {
-    File f = new File(filePathString);
     try {
       FileOutputStream fos = new FileOutputStream(path);
       ObjectOutputStream oos = new ObjectOutputStream(fos);
       oos.writeObject(events);
+      oos.close();
+      fos.close();
     } catch (IOException e) {
-      System.out.println("Error writing data!");
+      System.out.println("Error writing data!" + e);
     }
-    oos.close();
-    fos.close();
   }
 
-  public List<Event> getEventListOfDay(Calendar calendar) {
+  public List<Event> getEventListOfDay(Calendar cal) {
     List<Event> eventListOfDay = new ArrayList<Event>();
-    int year = calendar.get(Calendar.YEAR);
-    int month = calendar.get(Calendar.MONTH); // 0 - 11
-    int dayOfMonth = calendar.get(Calendar.dayOfMonth);
-    int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // 1 - 7, sun - saturday
+    int year = cal.get(cal.YEAR);
+    int month = cal.get(cal.MONTH); // 0 - 11
+    int dayOfMonth = cal.get(cal.DAY_OF_MONTH);
+    int dayOfWeek = cal.get(cal.DAY_OF_WEEK); // 1 - 7, sun - saturday
     for (int i = 0; i < events.size(); i++) {
       Event cur = events.get(i);
       if (cur.year == year && cur.month == month &&
@@ -59,10 +61,10 @@ public class Model {
     return eventListOfDay;
   }
 
-  public List<Event> getEventListOfMonth(Calendar calendar) {
+  public List<Event> getEventListOfMonth(Calendar cal) {
     List<Event> eventListOfMonth = new ArrayList<Event>();
-    int year = calendar.get(Calendar.YEAR);
-    int month = calendar.get(Calendar.MONTH); // 0 - 11
+    int year = cal.get(cal.YEAR);
+    int month = cal.get(cal.MONTH); // 0 - 11
     for (int i = 0; i < events.size(); i++) {
       Event cur = events.get(i);
       if (cur.year == year && cur.month == month) {
@@ -77,31 +79,32 @@ public class Model {
   public void createEvent(String title, int year, int month, int dayOfMonth,
                           int startHourOfDay, int startMinute) {
 
-    Event event = new Event(title, year, month, dayOfMonth, startHourOfDay,
-                            startMinute);
-    int i = 0;
-    for (i = 0; i < events.size(); i++) {
-      Evnet cur = events.get(i);
-      if (event.compareTo(cur) < 0)
-        i++;
-      else
-        break;
-    }
-    events.add(null);
-    for (int j = events.size() - 1; j > i; j--) {
-      events.set(j, events.get(j - 1));
-    }
-    events.set(i, event);
+    Event event =
+        new Event(title, year, month, dayOfMonth, startHourOfDay, startMinute);
+    events.add(event);
+    // int i = 0;
+    // for (i = 0; i < events.size(); i++) {
+    //   Event cur = events.get(i);
+    //   if (event.compareTo(cur) < 0)
+    //     i++;
+    //   else
+    //     break;
+    // }
+    // events.add(null);
+    // for (int j = events.size() - 1; j > i; j--) {
+    //   events.set(j, events.get(j - 1));
+    // }
+    // events.set(i, event);
   }
 
   public void createEvent(String title, int year, int month, int dayOfMonth,
-                          int startHourOfDay, int startMinute,
-                          int endHourOfDay, int endMinute) {
+                          int startHourOfDay, int startMinute, int endHourOfDay,
+                          int endMinute) {
     Event event = new Event(title, year, month, dayOfMonth, startHourOfDay,
                             startMinute, endHourOfDay, endMinute);
     int i = 0;
     for (i = 0; i < events.size(); i++) {
-      Evnet cur = events.get(i);
+      Event cur = events.get(i);
       if (event.compareTo(cur) < 0)
         i++;
       else
@@ -136,7 +139,9 @@ public class Model {
       end++;
       start++;
     }
-    events.removeRange(start, events.size());
+    for (int i = events.size() - 1; i >= start; i--) {
+      events.remove(i);
+    }
   }
 
   public void delteAllEvents() { events.clear(); }

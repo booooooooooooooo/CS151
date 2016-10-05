@@ -1,7 +1,7 @@
 /**
   Represent event.
  */
-public class Event implements Comparable<Event> {
+public class Event implements Comparable<Event>, java.io.Serializable{
   public String title;
   public int year;  // e.g 2016
   public int month; // 0 - 11
@@ -11,6 +11,11 @@ public class Event implements Comparable<Event> {
   public int startMinute;
   public int endHourOfDay;
   public int endMinute;
+
+  public String[] arrayOfMonths = {"Jan",  "Feb", "March", "Apr", "May", "June",
+                                   "July", "Aug", "Sep",   "Oct", "Nov", "Dec"};
+  public String[] arrayOfDays = {"Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"};
+
   public Event(String title, int year, int month, int dayOfMonth,
                int startHourOfDay, int startMinute, int endHourOfDay,
                int endMinute) {
@@ -62,5 +67,31 @@ public class Event implements Comparable<Event> {
       return 1;
 
     return 0;
+  }
+
+  @Override
+  public String toString() {
+    String result = "";
+
+    result += arrayOfMonths[month];
+    result += "/";
+    result += dayOfMonth;
+    result += "/";
+    result += year;
+    result += "/";
+    result += " ";
+    result += arrayOfDays[dayOfWeek];
+    result += " ";
+    result += startHourOfDay;
+    result += ":";
+    result += startMinute;
+    result += " - ";
+    result += endHourOfDay;
+    result += ":";
+    result += endMinute;
+    result += " ";
+    result += title;
+
+    return result;
   }
 }
