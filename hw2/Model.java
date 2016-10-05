@@ -47,39 +47,103 @@ public class Model {
     fos.close();
   }
 
-  public List<Event> getEventListOfDay(Cal cal) {
+  public List<Event> getEventListOfDay(Calendar calendar) {
+    List<Event> eventListOfDay = new ArrayList<Event>();
     int year = calendar.get(Calendar.YEAR);
     int month = calendar.get(Calendar.MONTH); // 0 - 11
     int dayOfMonth = calendar.get(Calendar.DAY_OF_MONTH);
     int dayOfWeek = calendar.get(Calendar.DAY_OF_WEEK); // 1 - 7, sun - saturday
+    for (int i = 0; i < events.size(); i++) {
+      Event cur = events.get(i);
+      if (cur.year == year && cur.month == month &&
+          cur.dayOfMonth == dayOfMonth) {
+        eventListOfDay.add(cur);
+      }
+    }
+    return eventListOfDay;
   }
+
+  public List<Event> getEventListOfMonth(Calendar calendar) {
+    List<Event> eventListOfMonth = new ArrayList<Event>();
+    int year = calendar.get(Calendar.YEAR);
+    int month = calendar.get(Calendar.MONTH); // 0 - 11
+    for (int i = 0; i < events.size(); i++) {
+      Event cur = events.get(i);
+      if (cur.year == year && cur.month == month) {
+        eventListOfMonth.add(cur);
+      }
+    }
+    return eventListOfMonth;
+  }
+
+  public List<Event> getWholeEventList() { return events; }
 
   public void createEvent(String title, int year, int month, int day_of_month,
                           int start_hour_of_day, int start_minute) {
-    // TODO
+
+    Event event = new Event(title, year, month, day_of_month, start_hour_of_day,
+                            start_minute);
+    int i = 0;
+    for (i = 0; i < events.size(); i++) {
+      Evnet cur = events.get(i);
+      if (event.compareTo(cur) < 0)
+        i++;
+      else
+        break;
+    }
+    events.add(null);
+    for (int j = events.size() - 1; j > i; j--) {
+      events.set(j, events.get(j - 1));
+    }
+    events.set(i, event);
   }
 
   public void createEvent(String title, int year, int month, int day_of_month,
                           int start_hour_of_day, int start_minute,
                           int end_hour_of_day, int end_minute) {
-    // TODO
+    Event event = new Event(title, year, month, day_of_month, start_hour_of_day,
+                            start_minute, end_hour_of_day, end_minute);
+    int i = 0;
+    for (i = 0; i < events.size(); i++) {
+      Evnet cur = events.get(i);
+      if (event.compareTo(cur) < 0)
+        i++;
+      else
+        break;
+    }
+    events.add(null);
+    for (int j = events.size() - 1; j > i; j--) {
+      events.set(j, events.get(j - 1));
+    }
+    events.set(i, event);
   }
 
-  public void deleteDayEvent(int year, int month, int day_of_month){
-    //TODO
+  public void deleteDayEvent(int year, int month, int day_of_month) {
+    int start = -1;
+    int end = -1; // [start, end)
+    for (int i = 0; i < events.size(); i++) {
+      Event cur = events.get(i);
+      if (cur.year == year && cur.month == month &&
+          cur.day_of_month == day_of_month) {
+        if (start == -1)
+          start = i;
+      } else {
+        if (start != -1 && end == -1)
+          end = i;
+      }
+
+      if (start != -1 && end != -1)
+        break;
+    }
+    for (int i = end; i < events.size(); i++) {
+      events.set(start, events.get(end));
+      end++;
+      start++;
+    }
+    events.removeRange(start, events.size());
   }
 
-  public void delteAllEvents(){
-    events.clear();
-  }
-
-  public List<Event> getEventListOfMonth(Cal cal) {
-    // TODO
-  }
-
-  public List<Event> getWholeEventList() {
-    // TODO
-  }
+  public void delteAllEvents() { events.clear(); }
 
   public Calendar getGreCalInstanceOfToday() { return greCalToday; }
   public Calendar getGreCalInstanceOfGivenDay(int year, int month,
