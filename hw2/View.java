@@ -9,13 +9,13 @@ public class View {
   public static String[] arrayOfDays = {"Su", "Mo", "Tu", "We",
                                         "Th", "Fr", "Sa"};
 
-  // public static void displayMainMenu(Calendar now, List<Event> eventListOfMonth) {
-  //   displayMonthWithEventHighLighted(now, eventListOfMonth);
-  //   // TODO
-  // }
+  public static void displayMainMenu() {
+    System.out.println(
+        "Select one of the following options:\n[L]oad [V]iew by [C]reate [G]o to [E]vent list [D]elete [Q]uit");
+  }
 
-  public static void displayMonthWithEventHighLighted(Calendar cal,
-                                                      List<Event> eventListOfMonth) {
+  public static void
+  displayMonthWithEventHighLighted(Calendar cal, List<Event> eventListOfMonth) {
 
     int myMonth = cal.get(cal.MONTH);
     cal.set(cal.DAY_OF_MONTH, 1);
@@ -35,7 +35,7 @@ public class View {
     }
     int i = 0; // tail of eventListOfMonth
     while (myMonth == cal.get(cal.MONTH)) {
-      //hightlight day which has event
+      // Mark " on days which have event, mark [] on the day which is today TODO
       if (i < eventListOfMonth.size() &&
           eventListOfMonth.get(i).dayOfMonth == cal.get(cal.DAY_OF_MONTH)) {
         System.out.printf("%3d\"", cal.get(cal.DAY_OF_MONTH));
@@ -50,11 +50,13 @@ public class View {
     }
     System.out.println();
   }
-  //
-  // public static void displayDayWithEvnetList(Calendar anytime, List<Event>
-  // eventListOfDay) {
-  //   // TODO
-  // }
+
+  public static void displayDayWithEvnetList(Calendar cal,
+                                             List<Event> eventListOfDay) {
+    System.out.println(cal.getTime());
+    for (int i = 0; i < eventListOfDay.size(); i++)
+      System.out.println(eventListOfDay.get(i));
+  }
   //
   // public static String getInput() {
   //   public static Scanner cin = new Scanner(System.in);
@@ -62,7 +64,4 @@ public class View {
   //   return input;
   // }
   //
-  public static void promptFirstRun() {
-    System.out.println("First run of calendar app!");
-  }
 }

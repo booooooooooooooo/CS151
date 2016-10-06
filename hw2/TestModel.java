@@ -31,7 +31,9 @@ public class TestModel {
       System.out.println(wholeEventList.get(i));
     }
 
-    model.deleteDayEvent(2016, 10, 7);
+    model.createEvent("Finish hw2 this evening",
+                      new GregorianCalendar(2016, 9, 13, 17, 34),
+                      new GregorianCalendar(2016, 9, 13, 22, 00));
     System.out.printf("\n\nAfter deletion\n\n");
 
     eventListOfDay = model.getEventListOfDay(cal);
