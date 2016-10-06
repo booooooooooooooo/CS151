@@ -72,11 +72,27 @@ public class View {
     for (int i = 0; i < eventListOfDay.size(); i++)
       System.out.println(eventListOfDay.get(i));
   }
-  //
-  // public static String getInput() {
-  //   public static Scanner cin = new Scanner(System.in);
-  //   String input = cin.nextLine();
-  //   return input;
-  // }
-  //
+
+  public static String getInput() {
+    Scanner cin = new Scanner(System.in);
+    String input = cin.nextLine();
+    return input;
+  }
+
+  public static void displayErrorInput(){
+    System.out.println("Error input! Please read guideline carefully!");
+  }
+
+  public static void displayFirstRunMsg(){
+    System.out.println("First run of calendar app!");
+  }
+
+  public static void displayIOError(){
+    System.out.println("Error loading or writing data!");
+  }
+
+  public static void displayMsg(String msg){
+    System.out.println(msg);
+  }
+
 }

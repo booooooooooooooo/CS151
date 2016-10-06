@@ -9,5 +9,7 @@ public class TestView {
     View.displayMainMenu();
     View.displayDayWithEventList(
         new GregorianCalendar(), model.getEventListOfDay(new GregorianCalendar()));
+    String input = View.getInput();
+    System.out.println(input);
   }
 }

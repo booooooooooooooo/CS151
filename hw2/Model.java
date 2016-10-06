@@ -17,7 +17,7 @@ public class Model {
   public void loadEventsFromFile(String path) {
     File f = new File(path);
     if (!f.exists() && !f.isDirectory()) {
-      System.out.println("First run of calendar app!");
+      View.displayFirstRunMsg();
     } else {
       try {
         FileInputStream fis = new FileInputStream(path);
@@ -26,9 +26,9 @@ public class Model {
         ois.close();
         fis.close();
       } catch (IOException e1) {
-        System.out.println("Error loading data!" + e1);
+        View.displayIOError();
       } catch (ClassNotFoundException e2) {
-        System.out.println("Class not found!" + e2);
+        View.displayIOError();
       }
     }
   }
@@ -41,7 +41,7 @@ public class Model {
       oos.close();
       fos.close();
     } catch (IOException e) {
-      System.out.println("Error writing data!" + e);
+      View.displayIOError();
     }
   }
 
