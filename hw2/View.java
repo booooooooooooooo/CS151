@@ -73,6 +73,12 @@ public class View {
       System.out.println(eventListOfDay.get(i));
   }
 
+  public static void displayEventList(List<Event> events){
+    for(int i = 0; i < events.size(); i++){
+      System.out.println(events.get(i));
+    }
+  }
+
   public static String getInput() {
     Scanner cin = new Scanner(System.in);
     String input = cin.nextLine();

@@ -86,18 +86,47 @@ public class MyCalendarTester{
   }
 
   public static void create(){
-    //TODO
+    View.displayMsg("Please enter title:");
+    String title = View.getInput();
+    View.displayMsg("Please enter date in MM/DD/YYYY format:");
+    String date = View.getInput();
+    View.displayMsg("Please enter start time in HH:MM 24-hour clock format:");
+    String startTime = View.getInput();
+    View.displayMsg("Please enter end time in HH:MM 24-hour clock format. If no end time, please leave blank.");
+    String endTime = View.getInput();
+    model.createEvent(title, parseToCal(String date, String startTime), parseToCal(String date, String endTime)) ;
+
   }
 
   public static void goTo(){
-    //TODO
+    View.displayMsg("Please enter date in MM/DD/YYYY format:");
+    String date = View.getInput();
+    Calendar cal = parseToCal(date);
+    View.displayDayWithEventList(cal, model.getEventListOfDay(cal));
   }
 
   public static void eventList(){
-    //TODO
+    View.displayEventList(model.getWholeEventList());
   }
 
   public static void delete(){
+    View.displayMsg("[S]elected or [A]ll?");
+    String input = View.getInput();
+    if(input.equals("S") || input.equals("s")){
+      View.displayMsg("Please enter date in MM/DD/YYYY format:");
+      String date = View.getInput();
+      model.deleteDayEvent(parseToCal(date));
+    }else if(input.equals("A") || input.equals("a")){
+      model.delteAllEvents();
+    }else View.displayErrorInput();
+  }
+
+  public static Calendar parseToCal(String date){
+    //TODO
+  }
+
+
+  public static Calendar parseToCal(String date, String time){
     //TODO
   }
 
