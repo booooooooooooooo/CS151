@@ -17,21 +17,22 @@ public class View {
 
   // Mark " on days which have event, mark [] on the day which is today TODO
   public static void
-  displayMonthWithEventHighLighted(Calendar cal, List<Event> eventListOfMonth) {
+  displayMonthWithEventHighLighted(Calendar calPara, List<Event> eventListOfMonth) {
+    Calendar cal = (Calendar)calPara.clone();
 
     int myMonth = cal.get(cal.MONTH);
     cal.set(cal.DAY_OF_MONTH, 1);
-    //print month and year
+    // print month and year
     System.out.print("       ");
     System.out.printf(arrayOfMonths[cal.get(cal.MONTH)]);
     System.out.print("  ");
     System.out.println(cal.get(cal.YEAR));
-    //print Su Mo Tu We Th Fr Sa
+    // print Su Mo Tu We Th Fr Sa
     for (int i = 0; i < arrayOfDays.length; i++) {
       System.out.printf("%5s", arrayOfDays[i]);
     }
     System.out.println();
-    //print body
+    // print body
     for (int j = 1; j < cal.get(cal.DAY_OF_WEEK); j++) {
       System.out.print("     ");
     }
@@ -39,25 +40,33 @@ public class View {
     Calendar today = new GregorianCalendar();
     while (myMonth == cal.get(cal.MONTH)) {
       boolean hasEvent = false;
-      if(i < eventListOfMonth.size() ){
+      if (i < eventListOfMonth.size()) {
         Calendar startCal = eventListOfMonth.get(i).startCal;
-        if( startCal.get(startCal.DAY_OF_MONTH) ==  cal.get(cal.DAY_OF_MONTH)){
+        if (startCal.get(startCal.DAY_OF_MONTH) == cal.get(cal.DAY_OF_MONTH)) {
           hasEvent = true;
-          while(i < eventListOfMonth.size() ){
+          while (i < eventListOfMonth.size()) {
             startCal = eventListOfMonth.get(i).startCal;
-            if(startCal.get(startCal.DAY_OF_MONTH) ==  cal.get(cal.DAY_OF_MONTH)) i++;
-            else break;
+            if (startCal.get(startCal.DAY_OF_MONTH) ==
+                cal.get(cal.DAY_OF_MONTH))
+              i++;
+            else
+              break;
           }
         }
       }
-      boolean isToday = today.get(today.DAY_OF_MONTH) == cal.get(cal.DAY_OF_MONTH) ? true : false;
-      if ( isToday && hasEvent) {
+      boolean isToday =
+          today.get(today.YEAR) == cal.get(cal.YEAR) &&
+                  today.get(today.MONTH) == cal.get(cal.MONTH) &&
+                  today.get(today.DAY_OF_MONTH) == cal.get(cal.DAY_OF_MONTH)
+              ? true
+              : false;
+      if (isToday && hasEvent) {
         System.out.printf("[%2d]\"", cal.get(cal.DAY_OF_MONTH));
-      } else if(hasEvent){
+      } else if (hasEvent) {
         System.out.printf("  %2d\"", cal.get(cal.DAY_OF_MONTH));
-      }else if( isToday ){
+      } else if (isToday) {
         System.out.printf(" [%2d]", cal.get(cal.DAY_OF_MONTH));
-      }else
+      } else
         System.out.printf("%5d", cal.get(cal.DAY_OF_MONTH));
       if (cal.get(cal.DAY_OF_WEEK) % 7 == 0)
         System.out.println();
@@ -73,8 +82,8 @@ public class View {
       System.out.println(eventListOfDay.get(i));
   }
 
-  public static void displayEventList(List<Event> events){
-    for(int i = 0; i < events.size(); i++){
+  public static void displayEventList(List<Event> events) {
+    for (int i = 0; i < events.size(); i++) {
       System.out.println(events.get(i));
     }
   }
@@ -85,20 +94,17 @@ public class View {
     return input;
   }
 
-  public static void displayErrorInput(){
+  public static void displayErrorInput() {
     System.out.println("Error input! Please read guideline carefully!");
   }
 
-  public static void displayFirstRunMsg(){
+  public static void displayFirstRunMsg() {
     System.out.println("First run of calendar app!");
   }
 
-  public static void displayIOError(){
+  public static void displayIOError() {
     System.out.println("Error loading or writing data!");
   }
 
-  public static void displayMsg(String msg){
-    System.out.println(msg);
-  }
-
+  public static void displayMsg(String msg) { System.out.println(msg); }
 }
