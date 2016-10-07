@@ -3,8 +3,12 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ Controller
+ */
 public class MyCalendarTester {
   private static Model model = new Model();
+
   public static void main(String args[]) {
     while (true) {
       View.displayMonthWithEventHighLighted(
@@ -21,7 +25,9 @@ public class MyCalendarTester {
       }
     }
   }
-
+  /**
+   Dispatch customer request to method
+   */
   public static void callCorrespondingmethod(String input) {
     if (input.equals("l") || input.equals("L")) {
       load();
@@ -39,11 +45,15 @@ public class MyCalendarTester {
       View.displayErrorInput();
     }
   }
-
+  /**
+   Process load request.
+   */
   public static void load() {
     model.loadEventsFromFile("/Users/xiaohei/Documents/cs151/hw2/events.txt");
   }
-
+  /**
+   Process view request.
+   */
   public static void view() {
     View.displayMsg("[D]ay view or [M]view ? ");
     String input = View.getInput();
@@ -60,7 +70,9 @@ public class MyCalendarTester {
       return;
     }
   }
-
+  /**
+   Called by view().
+   */
   public static void proceedDayView(Calendar cal) {
     while (true) {
       View.displayMsg("[P]revious or [N]ext or [M]ain menu ? ");
@@ -79,7 +91,9 @@ public class MyCalendarTester {
       }
     }
   }
-
+  /**
+   Called by view().
+   */
   public static void proceedMonthView(Calendar cal) {
     while (true) {
       View.displayMsg("[P]revious or [N]ext or [M]ain menu ? ");
@@ -88,21 +102,23 @@ public class MyCalendarTester {
         return;
       else if (option.equals("P") || option.equals("p")) {
 
-          cal.add(cal.MONTH, -1);
-          View.displayMonthWithEventHighLighted(cal,
+        cal.add(cal.MONTH, -1);
+        View.displayMonthWithEventHighLighted(cal,
                                               model.getEventListOfMonth(cal));
       } else if (option.equals("N") || option.equals("n")) {
 
-          cal.add(cal.MONTH, 1);
-          View.displayMonthWithEventHighLighted(cal,
-                                                model.getEventListOfMonth(cal));
+        cal.add(cal.MONTH, 1);
+        View.displayMonthWithEventHighLighted(cal,
+                                              model.getEventListOfMonth(cal));
       } else {
         View.displayMsg("Error input! Please read guideline carefully!");
         return;
       }
     }
   }
-
+  /**
+   Process create request.
+   */
   public static void create() {
     View.displayMsg("Please enter title:");
     String title = View.getInput();
@@ -113,23 +129,30 @@ public class MyCalendarTester {
     View.displayMsg(
         "Please enter end time in HH:MM 24-hour clock format. If no end time, please leave blank.");
     String endTime = View.getInput();
-    if(endTime.equals("")){
-      model.createEvent(title, parseToCal(date, startTime) );
-    }else model.createEvent(title, parseToCal(date, startTime),
-                      parseToCal(date, endTime));
+    if (endTime.equals("")) {
+      model.createEvent(title, parseToCal(date, startTime));
+    } else
+      model.createEvent(title, parseToCal(date, startTime),
+                        parseToCal(date, endTime));
   }
-
+  /**
+   Process go to request.
+   */
   public static void goTo() {
     View.displayMsg("Please enter date in MM/DD/YYYY format:");
     String date = View.getInput();
     Calendar cal = parseToCal(date);
     View.displayDayWithEventList(cal, model.getEventListOfDay(cal));
   }
-
+  /**
+   Process display all events request.
+   */
   public static void eventList() {
     View.displayEventList(model.getWholeEventList());
   }
-
+  /**
+   Process delete request.
+   */
   public static void delete() {
     View.displayMsg("[S]elected or [A]ll?");
     String input = View.getInput();
@@ -142,7 +165,9 @@ public class MyCalendarTester {
     } else
       View.displayErrorInput();
   }
-
+  /**
+   Utility. Parse string to Calendar instance.
+   */
   public static Calendar parseToCal(String date) {
     String[] parts = date.split("/");
     int month = Integer.parseInt(parts[0]) - 1;
@@ -152,14 +177,14 @@ public class MyCalendarTester {
     ;
     return new GregorianCalendar(year, month, day);
   }
-
+  /**
+   Utility. Parse string to Calendar instance.
+   */
   public static Calendar parseToCal(String date, String time) {
     String[] parts = date.split("/");
     int month = Integer.parseInt(parts[0]) - 1;
     int day = Integer.parseInt(parts[1]);
-    ;
     int year = Integer.parseInt(parts[2]);
-    ;
 
     String[] anotherParts = time.split(":");
     int hour = Integer.parseInt(anotherParts[0]);

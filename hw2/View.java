@@ -3,21 +3,31 @@ import java.util.GregorianCalendar;
 import java.util.Calendar;
 import java.util.List;
 import java.util.ArrayList;
+/**
+ View.
+ */
 public class View {
   public static String[] arrayOfMonths = {"Jan", "Feb",  "March", "Apr",
                                           "May", "June", "July",  "Aug",
                                           "Sep", "Oct",  "Nov",   "Dec"};
   public static String[] arrayOfDays = {"Su", "Mo", "Tu", "We",
                                         "Th", "Fr", "Sa"};
-
+  public static
+    Scanner cin = new Scanner(System.in);
+  /**
+   Display main menu.
+   */
   public static void displayMainMenu() {
     System.out.println(
         "Select one of the following options:\n[L]oad [V]iew by [C]reate [G]o to [E]vent list [D]elete [Q]uit");
   }
 
-  // Mark " on days which have event, mark [] on the day which is today TODO
+  /**
+   Display month calendar.  Mark " on days which have event, mark [] on the day which is today.
+   */
   public static void
-  displayMonthWithEventHighLighted(Calendar calPara, List<Event> eventListOfMonth) {
+  displayMonthWithEventHighLighted(Calendar calPara,
+                                   List<Event> eventListOfMonth) {
     Calendar cal = (Calendar)calPara.clone();
 
     int myMonth = cal.get(cal.MONTH);
@@ -74,37 +84,50 @@ public class View {
     }
     System.out.println();
   }
-
+  /**
+   Display date of a specific day. Display events happend in that day.
+   */
   public static void displayDayWithEventList(Calendar cal,
                                              List<Event> eventListOfDay) {
     System.out.println(cal.getTime());
     for (int i = 0; i < eventListOfDay.size(); i++)
       System.out.println(eventListOfDay.get(i));
   }
-
+  /**
+   Display list of events.
+   */
   public static void displayEventList(List<Event> events) {
     for (int i = 0; i < events.size(); i++) {
       System.out.println(events.get(i));
     }
   }
-
+  /**
+   Get input from user.
+   */
   public static String getInput() {
-    Scanner cin = new Scanner(System.in);
     String input = cin.nextLine();
     return input;
   }
-
+  /**
+   Display error input msg.
+   */
   public static void displayErrorInput() {
     System.out.println("Error input! Please read guideline carefully!");
   }
-
+  /**
+   Display first run msg.
+   */
   public static void displayFirstRunMsg() {
     System.out.println("First run of calendar app!");
   }
-
+  /**
+   Display IO error msg.
+   */
   public static void displayIOError() {
     System.out.println("Error loading or writing data!");
   }
-
+  /**
+   Display given msg.
+   */
   public static void displayMsg(String msg) { System.out.println(msg); }
 }

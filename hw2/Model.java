@@ -8,12 +8,16 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
-
+/**
+ Model.
+ */
 public class Model {
   public List<Event> events; // acsending order
 
   public Model() { events = new ArrayList<Event>(); }
-
+  /**
+   Load events info from file.
+   */
   public void loadEventsFromFile(String path) {
     File f = new File(path);
     if (!f.exists() && !f.isDirectory()) {
@@ -32,7 +36,9 @@ public class Model {
       }
     }
   }
-
+  /**
+   Write events infor to file.
+   */
   public void writeEventsToFile(String path) {
     try {
       FileOutputStream fos = new FileOutputStream(path);
@@ -44,7 +50,9 @@ public class Model {
       View.displayIOError();
     }
   }
-
+  /**
+   Get list of events of given day.
+   */
   public List<Event> getEventListOfDay(Calendar cal) {
     List<Event> eventListOfDay = new ArrayList<Event>();
     for (int i = 0; i < events.size(); i++) {
@@ -57,7 +65,9 @@ public class Model {
     }
     return eventListOfDay;
   }
-
+  /**
+   Get list of events of given month.
+   */
   public List<Event> getEventListOfMonth(Calendar cal) {
     List<Event> eventListOfMonth = new ArrayList<Event>();
     for (int i = 0; i < events.size(); i++) {
@@ -69,26 +79,28 @@ public class Model {
     }
     return eventListOfMonth;
   }
-
+  /**
+   Get list of all events.
+   */
   public List<Event> getWholeEventList() { return events; }
 
-  /*
+  /**
    Create event. Add it to evnets list.
-  **/
+   */
   public void createEvent(String title, Calendar startCal, Calendar endCal) {
     Event event = new Event(title, startCal, endCal);
     insert(event);
   }
-  /*
+  /**
    Create event without end time. Add it to evnets list.
-  **/
+   */
   public void createEvent(String title, Calendar startCal) {
     Event event = new Event(title, startCal);
     insert(event);
   }
-  /*
+  /**
    Insert event to events list. Keep acsending order.
-  **/
+   */
   private void insert(Event event) {
     int i = 0;
     for (i = 0; i < events.size(); i++) {
@@ -103,10 +115,9 @@ public class Model {
     }
     events.set(i, event);
   }
-  /*
-   Delete all events in the specific day. Caution!! Only year, month and
-  dayOfMonth are initialized in parameter cal.
-  **/
+  /**
+   Delete all events in the specific day.
+   */
   public void deleteDayEvent(Calendar cal) {
     int start = -1;
     int end = -1; // [start, end]
@@ -131,8 +142,8 @@ public class Model {
       events.remove(i);
     }
   }
-  /*
+  /**
    Delete all events.
-  **/
+   */
   public void delteAllEvents() { events.clear(); }
 }
