@@ -25,7 +25,7 @@ public class CarShape implements MoveableShape {
     Ellipse2D.Double frontTire = new Ellipse2D.Double(
         x +  width / 6, y + width / 3, width / 6, width / 6);
     Ellipse2D.Double endTire = new Ellipse2D.Double(  x + width * 2 / 3, y + width / 3, width / 6, width / 6);
-    
+
     g2.draw(body);
     g2.draw(frontTire);
     g2.draw(endTire);
