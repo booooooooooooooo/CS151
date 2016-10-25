@@ -1,0 +1,4 @@
+/*DecoratorTester java and all required
+classes including EncryptingWriter and
+DecryptingReader. Test your classes in the
+DecoratorTester.*/
