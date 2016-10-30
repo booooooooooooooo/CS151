@@ -1,8 +1,27 @@
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+import java.util.*;
+
+
+public class MVCTester{
+  public static void main(String args[]){
+    Model model = new Model();
+    MiniFrame frame = new MiniFrame(model);
+    model.attach(frame);
+
+
+
+  }
+}
+
 /*Write MVCTester.java.
 
-When the program starts, the initial screen displays a button
-labeled "add", a blank text area, and a text
-field.
+When the program starts, the initial screen displays
+a button labeled "add",
+a blank text area,
+and a text field.
 
 A user places a line in the text field
 and clicks on the add button. Then, the text
