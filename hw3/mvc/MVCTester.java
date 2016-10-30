@@ -1,13 +1,18 @@
-/*Write MVCTester.java. When the program
-starts, the initial screen displays a button
+/*Write MVCTester.java.
+
+When the program starts, the initial screen displays a button
 labeled "add", a blank text area, and a text
-field. A user places a line in the text field
+field.
+
+A user places a line in the text field
 and clicks on the add button. Then, the text
 area displays the line. Each time the user
 enters a new line in a text field and clicks on
 the add button, the text area is updated
 displaying previously entered lines and the new
-line. The following picture shows the snapshot
+line.
+
+The following picture shows the snapshot
 of the program output right after two lines are
 added. snapshot To get a credit, the following
 requirements have to be satisfied.
