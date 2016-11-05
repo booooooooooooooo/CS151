@@ -12,12 +12,16 @@ import java.io.IOException;
 public class Model{
   private Calendar highlightedCal;
   private List<Event> events; // in order of time
+  private View view;
 
   public Model(String filePath){
     highlightedCal = new GregorianCalendar();
     events = loadEvents(filePath);
   }
 
+  public void attach(View v){
+    this.view = v;
+  }
 
   private List<Event> loadEvents(String filePath){
     List<Event> result = new ArrayList<Event>();
@@ -52,11 +56,7 @@ public class Model{
     }
   }
 
-  public void createEventOnHighlightedCal(String startHM, String endHM, String title){
-    Event event = new Event(title, parseToCal(startHM), parseToCal(endHM));
-    insert(event);
 
-  }
 
   public List<Event> getDayEventsOnHighlightedCal(){
     List<Event> result = new ArrayList<Event>();
@@ -75,16 +75,29 @@ public class Model{
   public Calendar getHighlightedCal(){
     return highlightedCal;
   }
+
+  /**
+   Mutatorssssssss
+   */
+  public void createEventOnHighlightedCal(String startHM, String endHM, String title){
+    Event event = new Event(title, parseToCal(startHM), parseToCal(endHM));
+    insert(event);
+    view.repaint();
+
+  }
   public void changeHighlightedCalToDay(int day){
     highlightedCal.set(highlightedCal.DAY_OF_MONTH, day);
+    view.repaint();
   }
   public void changeHighlightedCalToNextMonth(){
     highlightedCal.add(highlightedCal.MONTH, 1);
     highlightedCal.set(highlightedCal.DAY_OF_MONTH, 1);
+    view.repaint();
   }
   public void changeHighlightedCalToPrevMonth(){
     highlightedCal.add(highlightedCal.MONTH, -1);
     highlightedCal.set(highlightedCal.DAY_OF_MONTH, 1);
+    view.repaint();
   }
 
 
@@ -123,6 +136,26 @@ public class Model{
         events.set(j, events.get(j - 1));
       }
       events.set(i, event);
+    }
+
+    public Object[][] makeTableContent(){
+      Calendar temp = (Calendar)getHighlightedCal().clone();
+      // System.out.println(temp.get(temp.DAY_OF_WEEK));
+      temp.set(temp.DAY_OF_MONTH, 1);
+      int month = temp.get(temp.MONTH);
+
+      String[][] result = new String[5][7];
+      for(int i = 0; i < 5; i++){
+        for(int j = 0; j < 7; j++){
+          if(temp.get(temp.MONTH) != month) result[i][j] = "";
+          else if(i == 0 && temp.get(temp.DAY_OF_WEEK) -1 > j) result[i][j] = "";
+          else{
+            result[i][j] = "" + temp.get(temp.DAY_OF_MONTH);
+            temp.add(temp.DAY_OF_MONTH, 1);
+          }
+        }
+      }
+      return result;
     }
 
 }

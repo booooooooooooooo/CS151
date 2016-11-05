@@ -15,11 +15,11 @@ public class Event implements java.io.Serializable {
     this.startCal = startCal;
     this.endCal = endCal;
   }
-  public Event(String title, Calendar startCal) {
-    this.title = title;
-    this.startCal = startCal;
-    this.endCal = startCal;
-  }
+  // public Event(String title, Calendar startCal) {
+  //   this.title = title;
+  //   this.startCal = startCal;
+  //   this.endCal = startCal;
+  // }
 
   @Override
   public String toString() {

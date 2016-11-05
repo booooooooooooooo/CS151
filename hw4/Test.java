@@ -38,6 +38,7 @@ public class Test {
     log(model.getHighlightedCal().getTime());
     model.changeHighlightedCalToPrevMonth();
     log(model.getHighlightedCal().getTime());
+    log(result.toString());
 
   }
 
