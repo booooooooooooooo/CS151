@@ -10,7 +10,7 @@ import java.awt.event.MouseEvent;
 import java.util.GregorianCalendar;
 import java.util.Calendar;
 
-public class SimpleTableDemo extends JPanel {
+public class Calendar_P extends JPanel {
     private Calendar cal; // Current time of first day of the month being displayed.
     private Object[][] data;// Changed together with calendar
     private final String[] columnNames = {"Su", "Mo", "Tu", "We",
@@ -18,7 +18,7 @@ public class SimpleTableDemo extends JPanel {
 
 
 
-    public SimpleTableDemo() {
+    public Calendar_P() {
         super(new GridLayout(1,0));
         cal = new GregorianCalendar();//initialize cal as today
         data = makeDayArr();
