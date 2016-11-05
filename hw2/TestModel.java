@@ -5,10 +5,10 @@ public class TestModel {
   public static void main(String args[]) {
     GregorianCalendar cal = new GregorianCalendar();
     Model model = new Model();
-    model.loadEventsFromFile("/Users/xiaohei/Documents/cs151/hw2/events.txt");
-    // for(int i = 0; i < model.events.size(); i++){
-    // System.out.println(model.events.get(i));
-    // }
+    model.loadEventsFromFile("./events.txt");
+    for(int i = 0; i < model.events.size(); i++){
+    System.out.println(model.events.get(i));
+    }
     // model.createEvent("Create first event", 2016, 10, 7,22, 30);
     // for(int i = 0; i < model.events.size(); i++){
     // System.out.println(model.events.get(i));
@@ -54,7 +54,7 @@ public class TestModel {
       System.out.println(wholeEventList.get(i));
     }
 
-    // model.writeEventsToFile("/Users/xiaohei/Documents/cs151/hw2/events.txt");
+    // model.writeEventsToFile("./events.txt");
     // View.displayMonthWithEventHighLighted(cal, null);
   }
 }
