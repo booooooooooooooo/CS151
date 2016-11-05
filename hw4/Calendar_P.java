@@ -34,7 +34,8 @@ public class Calendar_P extends JPanel {
               JTable target = (JTable)e.getSource();
               int row = target.getSelectedRow();
               int column = target.getSelectedColumn();
-              System.out.printf("Row %d, Colume %d is clicked! year = %d, month = %d, day = %d\n", row, column, cal.get(cal.YEAR), cal.get(cal.MONTH), table.getModel().getValueAt(row, column));
+              //TODO: change event panel instead of logging in console.  model.setDay(...){view.repaint()}
+              System.out.printf("Row %d, Colume %d is clicked! year = %d, month = %d, day = %s\n", row, column, cal.get(cal.YEAR), cal.get(cal.MONTH), table.getModel().getValueAt(row, column));
 
           }
         });
@@ -60,12 +61,19 @@ public class Calendar_P extends JPanel {
 
     private Object[][] makeDayArr(){
       Calendar temp = (Calendar)cal.clone();
+      System.out.println(temp.get(temp.DAY_OF_WEEK));
       temp.set(temp.DAY_OF_MONTH, 1);
+      int month = temp.get(temp.MONTH);
 
-      Integer[][] result = new Integer[5][7];
+      String[][] result = new String[5][7];
       for(int i = 0; i < 5; i++){
         for(int j = 0; j < 7; j++){
-          result[i][j] = 0;
+          if(temp.get(temp.MONTH) != month) result[i][j] = "";
+          else if(i == 0 && temp.get(temp.DAY_OF_WEEK) -1 > j) result[i][j] = "";
+          else{
+            result[i][j] = "" + temp.get(temp.DAY_OF_MONTH);
+            temp.add(temp.DAY_OF_MONTH, 1);
+          }
         }
       }
       return result;
