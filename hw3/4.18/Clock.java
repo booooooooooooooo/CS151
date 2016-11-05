@@ -25,7 +25,7 @@ public class Clock {
     double radiansH = Math.toRadians((hour - 0) / 12 * 360);
     double radiansM = Math.toRadians((mnt - 0) / 60 * 360);
     double radiansS = Math.toRadians((sec - 0) / 60 * 360);
-    System.out.printf("hour : %f, minite : %f, second : %f\n", hour, mnt, sec);
+    // System.out.printf("hour : %f, minite : %f, second : %f\n", hour, mnt, sec);
     Line2D.Double hourLine = new Line2D.Double(
         x, y, x + d / 3 * Math.sin(radiansH), y - d / 3 * Math.cos(radiansH));
     Line2D.Double mntLine =

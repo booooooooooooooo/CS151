@@ -4,13 +4,13 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.util.*;
 
-public class MiniFrame extends JFrame implements View{
+public class MiniFrameView extends JFrame implements View{
   private Model model;
   private JTextField textField;
   private JTextArea textArea;
   private JButton button;
 
-  public MiniFrame(Model model){
+  public MiniFrameView(Model model){
     this.model = model;
     this.textField = new JTextField();
     this.textArea = new JTextArea("Message displayed here:");
@@ -24,7 +24,8 @@ public class MiniFrame extends JFrame implements View{
     });
 
 
-    JPanel panel = new JPanel(new GridBagLayout());
+    JPanel panel = new JPanel();
+    panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
     panel.add(button);
     panel.add(textArea);
     panel.add(textField);
@@ -43,6 +44,6 @@ public class MiniFrame extends JFrame implements View{
       s = s + model.getMessageArr().get(i);
     }
     textArea.setText(s);
-    textArea.repaint();
+    this.repaint();
   }
 }
