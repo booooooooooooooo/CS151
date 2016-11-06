@@ -24,21 +24,20 @@ public class Test {
     // model.writeEventsToFile("./events.txt");
 
 
-    Model model = new Model("./events.txt");
-
-    List<Event> result = model.getDayEventsOnHighlightedCal();
-    for(int i = 0; i < result.size(); i++){
-      System.out.println(result.get(i));
-    }
-
-    log(model.getHighlightedCal().getTime());
-    model.changeHighlightedCalToDay(10);
-    log(model.getHighlightedCal().getTime());
-    model.changeHighlightedCalToNextMonth();
-    log(model.getHighlightedCal().getTime());
-    model.changeHighlightedCalToPrevMonth();
-    log(model.getHighlightedCal().getTime());
-    log(result.toString());
+    // Model model = new Model("./events.txt");
+    // List<Event> result = model.getDayEventsOnHighlightedCal();
+    // for(int i = 0; i < result.size(); i++){
+    //   System.out.println(result.get(i));
+    // }
+    // log(model.getHighlightedCal().getTime());
+    // model.changeHighlightedCalToDay(10);
+    // log(model.getHighlightedCal().getTime());
+    // model.changeHighlightedCalToNextMonth();
+    // log(model.getHighlightedCal().getTime());
+    // model.changeHighlightedCalToPrevMonth();
+    // log(model.getHighlightedCal().getTime());
+    // log(result.toString());
+      Model model = new Model("./events.txt");
 
   }
 

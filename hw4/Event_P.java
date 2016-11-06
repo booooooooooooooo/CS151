@@ -5,9 +5,23 @@ import javax.swing.event.*;
 import java.util.*;
 
 public class Event_P extends MyPanel{
+  private JTextArea j;
   public Event_P(Model m, View v){
     super(m, v);
-    JTextArea j = new JTextArea(model.getDayEventsOnHighlightedCal().toString());
+    j = new JTextArea(getModel().getDayEventsOnHighlightedCal().toString(), 10, 10);//TODO: size j by size of jframe
+    j.setLineWrap(true);
     add(j);
   }
+
+  public void setText(String s){
+    j.setText(s);
+    repaint();
+  }
+
+  @Override
+  public void react(){
+    j.setText(getModel().getDayEventsOnHighlightedCal().toString());
+    repaint();
+  }
+
 }

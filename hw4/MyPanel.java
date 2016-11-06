@@ -4,11 +4,20 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.util.*;
 
-public class MyPanel extends JPanel{
+public abstract class MyPanel extends JPanel implements Reactor{
   protected Model model;
   protected View view;
   public MyPanel(Model m, View v){
-    this.model = model;
-    this.view = view;
+    this.model = m;
+    this.view = v;
   }
+
+  public Model getModel(){
+    return model;
+  }
+
+  public View getView(){
+    return view;
+  }
+
 }
