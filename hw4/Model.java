@@ -82,22 +82,22 @@ public class Model{
   public void createEventOnHighlightedCal(String startHM, String endHM, String title){
     Event event = new Event(title, parseToCal(startHM), parseToCal(endHM));
     insert(event);
-    view.react();
+    view.drawOnUpdatedData();
 
   }
   public void changeHighlightedCalToDay(int day){
     highlightedCal.set(highlightedCal.DAY_OF_MONTH, day);
-    view.react();
+    view.drawOnUpdatedData();
   }
   public void changeHighlightedCalToNextMonth(){
     highlightedCal.add(highlightedCal.MONTH, 1);
     highlightedCal.set(highlightedCal.DAY_OF_MONTH, 1);
-    view.react();
+    view.drawOnUpdatedData();
   }
   public void changeHighlightedCalToPrevMonth(){
     highlightedCal.add(highlightedCal.MONTH, -1);
     highlightedCal.set(highlightedCal.DAY_OF_MONTH, 1);
-    view.react();
+    view.drawOnUpdatedData();
   }
 
 

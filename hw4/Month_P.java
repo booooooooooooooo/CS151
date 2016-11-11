@@ -54,18 +54,56 @@ public class Month_P extends MyPanel {
             getModel().changeHighlightedCalToNextMonth();
           }
         });
+        JButton create_B = new JButton("CREATE");
+        create_B.addActionListener(new ActionListener(){
+          @Override
+          public void actionPerformed(ActionEvent e){
+            view.displayCreatePanel();
+          }
+        });
+        JButton quit_B = new JButton("QUIT");
+        quit_B.addActionListener(new ActionListener(){
+          @Override
+          public void actionPerformed(ActionEvent e){
+            //TODO
+          }
+        });
+
+        setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.HORIZONTAL;
+      	c.gridx = 0;
+      	c.gridy = 0;
+        c.gridwidth = 1;
+        add(create_B, c);
+        c.fill = GridBagConstraints.HORIZONTAL;
+      	c.gridx = 1;
+      	c.gridy = 0;
+        c.gridwidth = 1;
+        add(prev_B, c);
+        c.fill = GridBagConstraints.HORIZONTAL;
+      	c.gridx = 2;
+      	c.gridy = 0;
+        c.gridwidth = 1;
+        add(next_B, c);
+        c.fill = GridBagConstraints.HORIZONTAL;
+      	c.gridx = 3;
+      	c.gridy = 0;
+        c.gridwidth = 1;
+        add(quit_B, c);
+        c.fill = GridBagConstraints.HORIZONTAL;
+      	c.gridx = 0;
+      	c.gridy = 1;
+        c.gridwidth = 4;
+        add(scrollPane, c);
 
 
 
-        add(scrollPane);
-        add(prev_B);
-        add(next_B);
-        setLayout(new GridLayout(1,0));
 
         //TODO: add > button, < button, create button, quit button
     }
     @Override
-    public void react(){
+    public void updateData(){
       String[][] result = makeTableContent();
       for(int i = 0; i < 5; i++){
         for(int j = 0; j < 7; j++){

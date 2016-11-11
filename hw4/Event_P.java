@@ -12,16 +12,15 @@ public class Event_P extends MyPanel{
     j.setLineWrap(true);
     add(j);
   }
-
-  public void setText(String s){
-    j.setText(s);
-    repaint();
-  }
+  // To delete
+  // public void setText(String s){
+  //   j.setText(s);
+  //   repaint();
+  // }
 
   @Override
-  public void react(){
+  public void updateData(){
     j.setText(getModel().getDayEventsOnHighlightedCal().toString());
-    repaint();
   }
 
 }

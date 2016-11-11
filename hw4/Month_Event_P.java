@@ -16,9 +16,9 @@ public class Month_Event_P extends MyPanel{
     add( e_P, BorderLayout.LINE_END);
 
   }
-  public void react(){
-    m_P.react();
-    e_P.react();
+  public void updateData(){
+    m_P.updateData();
+    e_P.updateData();
   }
 
 }

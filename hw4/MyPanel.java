@@ -4,7 +4,7 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.util.*;
 
-public abstract class MyPanel extends JPanel implements Reactor{
+public abstract class MyPanel extends JPanel{
   protected Model model;
   protected View view;
   public MyPanel(Model m, View v){
@@ -19,5 +19,9 @@ public abstract class MyPanel extends JPanel implements Reactor{
   public View getView(){
     return view;
   }
+
+  public void updateData(){};
+
+
 
 }
