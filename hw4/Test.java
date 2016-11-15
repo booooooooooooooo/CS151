@@ -10,7 +10,7 @@ import java.util.List;
 
 public class Test {
 
-  public static void main(String args[]){
+  public static void main(String args[]) {
     // JFrame frame = new JFrame();
     // frame.setSize(500, 500);
     // frame.add(new Calendar_P());
@@ -22,7 +22,6 @@ public class Test {
     // model.createEventOnHighlightedCal("9:00", "10:00","morning");
     // model.createEventOnHighlightedCal("12:00", "13:00","lunch");
     // model.writeEventsToFile("./events.txt");
-
 
     // Model model = new Model("./events.txt");
     // List<Event> result = model.getDayEventsOnHighlightedCal();
@@ -37,11 +36,8 @@ public class Test {
     // model.changeHighlightedCalToPrevMonth();
     // log(model.getHighlightedCal().getTime());
     // log(result.toString());
-      Model model = new Model("./events.txt");
-
+    Model model = new Model("./events.txt");
   }
 
-  public static void log(Object obj){
-    System.out.println(obj);
-  }
+  public static void log(Object obj) { System.out.println(obj); }
 }

@@ -4,11 +4,12 @@ import javax.swing.*;
 import javax.swing.event.*;
 import java.util.*;
 
-public class Event_P extends MyPanel{
+public class Event_P extends MyPanel {
   private JTextArea j;
-  public Event_P(Model m, View v){
+  public Event_P(Model m, View v) {
     super(m, v);
-    j = new JTextArea(getModel().getDayEventsOnHighlightedCal().toString(), 10, 10);//TODO: size j by size of jframe
+    j = new JTextArea(getModel().getDayEventsOnHighlightedCal().toString(), 10,
+                      10); // TODO: size j by size of jframe
     j.setLineWrap(true);
     add(j);
   }
@@ -19,8 +20,7 @@ public class Event_P extends MyPanel{
   // }
 
   @Override
-  public void updateData(){
+  public void updateData() {
     j.setText(getModel().getDayEventsOnHighlightedCal().toString());
   }
-
 }
