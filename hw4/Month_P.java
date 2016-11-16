@@ -15,9 +15,11 @@ import java.util.GregorianCalendar;
 import java.util.Calendar;
 
 public class Month_P extends MyPanel {
-  final String[] columnNames = {"Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"};
-  final JTable table;
-
+  private final String[] columnNames = {"Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"};
+  private final JTable table;
+  /**
+    Constructor
+    */
   public Month_P(Model m, View v) {
     super(m, v);
 
@@ -107,24 +109,18 @@ public class Month_P extends MyPanel {
     c.gridwidth = 4;
     add(scrollPane, c);
 
-    // TODO: add > button, < button, create button, quit button
   }
-  @Override
-  public void updateData() {
-    String[][] result = makeTableContent();
-    for (int i = 0; i < 5; i++) {
-      for (int j = 0; j < 7; j++) {
-        table.getModel().setValueAt(result[i][j], i, j);
-      }
-    }
-    highlightHighlightedDay();
-  }
+  /**
+    Mark the active day.
+    */
   private void highlightHighlightedDay() {
     int[] cell = getCellOfHighlightedDay();
     table.setRowSelectionInterval(cell[0], cell[0]);
     table.setColumnSelectionInterval(cell[1], cell[1]);
   }
-
+  /**
+    One of utilities. Get table array based on active date.
+    */
   private String[][] makeTableContent() {
     Calendar temp = (Calendar)getModel().getHighlightedCal().clone();
     // System.out.println(temp.get(temp.DAY_OF_WEEK));
@@ -146,7 +142,9 @@ public class Month_P extends MyPanel {
     }
     return result;
   }
-
+  /**
+    One of utilities. get row and column of active day in JTable
+    */
   private int[] getCellOfHighlightedDay() {
     int[] cell = new int[2];
 
@@ -175,5 +173,18 @@ public class Month_P extends MyPanel {
       }
     }
     return cell;
+  }
+  /**
+    update all data in GUI tree branch in depth first order.
+    */
+  @Override
+  public void updateData() {
+    String[][] result = makeTableContent();
+    for (int i = 0; i < 5; i++) {
+      for (int j = 0; j < 7; j++) {
+        table.getModel().setValueAt(result[i][j], i, j);
+      }
+    }
+    highlightHighlightedDay();
   }
 }

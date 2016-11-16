@@ -10,19 +10,22 @@ import java.io.ObjectOutputStream;
 import java.io.IOException;
 
 public class Model {
-  private Calendar highlightedCal;
-  private List<Event> events; // in order of time
+  private Calendar highlightedCal; // the current date used by view
+  private String filePath;
+  private List<Event> events; // in order of start time
   private View view;
-  String filePath;
-
+  /**
+    Constructor
+    */
   public Model(String fp) {
     highlightedCal = new GregorianCalendar();
     this.filePath = fp;
     events = loadEvents();
   }
 
-  public void attach(View v) { this.view = v; }
-
+  /**
+    one of IO. Called by Constructor only.
+    */
   private List<Event> loadEvents() {
     List<Event> result = new ArrayList<Event>();
     File f = new File(filePath);
@@ -43,7 +46,9 @@ public class Model {
     }
     return result;
   }
-
+  /**
+    one of IO. Called when user quit calendar.
+    */
   public void writeEventsToFile() {
     try {
       FileOutputStream fos = new FileOutputStream(filePath);
@@ -56,6 +61,14 @@ public class Model {
     }
   }
 
+  /**
+    Attach view to model
+    */
+  public void attach(View v) { this.view = v; }
+
+  /**
+    one of accessors.
+    */
   public List<Event> getDayEventsOnHighlightedCal() {
     List<Event> result = new ArrayList<Event>();
     for (int i = 0; i < events.size(); i++) {
@@ -71,27 +84,40 @@ public class Model {
     }
     return result;
   }
-
+  /**
+    one of accessors.
+    */
   public Calendar getHighlightedCal() { return highlightedCal; }
 
   /**
-   Mutatorssssssss
+   one of Mutators
    */
-  public void createEventOnHighlightedCal(String startHM, String endHM,
+  public boolean createEventOnHighlightedCal(String startHM, String endHM,
                                           String title) {
     Event event = new Event(title, parseToCal(startHM), parseToCal(endHM));
-    insert(event);
+    boolean suceessInsertion =  insert(event);
     view.drawOnUpdatedData();
+    return suceessInsertion;
+
   }
+  /**
+   one of Mutators
+   */
   public void changeHighlightedCalToDay(int day) {
     highlightedCal.set(highlightedCal.DAY_OF_MONTH, day);
     view.drawOnUpdatedData();
   }
+  /**
+   one of Mutators
+   */
   public void changeHighlightedCalToNextMonth() {
     highlightedCal.add(highlightedCal.MONTH, 1);
     highlightedCal.set(highlightedCal.DAY_OF_MONTH, 1);
     view.drawOnUpdatedData();
   }
+  /**
+   one of Mutators
+   */
   public void changeHighlightedCalToPrevMonth() {
     highlightedCal.add(highlightedCal.MONTH, -1);
     highlightedCal.set(highlightedCal.DAY_OF_MONTH, 1);
@@ -99,7 +125,7 @@ public class Model {
   }
 
   /**
-   Utility. Parse string to Calendar instance.
+   one of Utilities. Parse string to Calendar instance.
    */
   public Calendar parseToCal(String hm) {
     int month = highlightedCal.get(highlightedCal.MONTH);
@@ -112,7 +138,9 @@ public class Model {
 
     return new GregorianCalendar(year, month, day, hour, minute);
   }
-
+  /**
+   one of Utilities. Convert Calendar instance to string "mm/dd/yyyy".
+   */
   public String getMMDDYYYY(){
     int month = highlightedCal.get(highlightedCal.MONTH) + 1;
     int day = highlightedCal.get(highlightedCal.DAY_OF_MONTH);
@@ -127,21 +155,22 @@ public class Model {
   }
 
   /**
-   Insert event to events list. Keep acsending order.
+   one of Utilities. Insert event to events list. Keep acsending order.
    */
-  private void insert(Event event) {
-    // TODO: handle time conflict
+  private boolean insert(Event event) {
     int i = 0;
     for (i = 0; i < events.size(); i++) {
-      if (events.get(i).startCal.compareTo(event.startCal) < 0)
-        continue;
-      else
+      if (events.get(i).endCal.compareTo(event.startCal) < 0 && ( i == events.size() - 1 || events.get(i + 1).startCal.compareTo(event.endCal) > 0 ) )
         break;
     }
+    if(i == events.size() ) return false;
+
+    //insert in position i + 1
     events.add(null); // increase size of events list by 1
-    for (int j = events.size() - 1; j > i; j--) {
+    for (int j = events.size() - 1; j > i + 1; j--) {
       events.set(j, events.get(j - 1));
     }
-    events.set(i, event);
+    events.set(i + 1, event);
+    return true;
   }
 }

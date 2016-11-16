@@ -29,6 +29,7 @@ public class Event implements java.io.Serializable {
     result += endCal.getTime();
     result += "   ";
     result += title;
+    result += "\n";
     return result;
   }
 }

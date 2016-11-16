@@ -17,7 +17,9 @@ import java.util.GregorianCalendar;
 import java.util.Calendar;
 
 public class Creat_P extends MyPanel {
-
+  /**
+    Constructor
+    */
   public Creat_P(Model m, View v) {
     super(m, v);
 
@@ -26,17 +28,19 @@ public class Creat_P extends MyPanel {
     JTextField startTime_textField = new JTextField("HH:MM");
     JLabel to_lable = new JLabel("to");
     JTextField endTime_textField = new JTextField("HH:MM");
+    JLabel error_lable = new JLabel("");
 
     JButton save_B = new JButton("save");
     save_B.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        // TODO: save new event to model,
         String startHM = startTime_textField.getText();
         String endHM = endTime_textField.getText();
         String title = title_textField.getText();
-        model.createEventOnHighlightedCal(startHM, endHM, title);
-        view.displayMonthEventPanel();
+        //TODO:Check time conflict. Display error msg.
+
+        if( model.createEventOnHighlightedCal(startHM, endHM, title) )   view.displayMonthEventPanel();
+        else error_lable.setText("Time conflict!");
       }
     });
 
@@ -46,5 +50,6 @@ public class Creat_P extends MyPanel {
     add(to_lable);
     add(endTime_textField);
     add(save_B);
+    add(error_lable);
   }
 }
