@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.io.IOException;
 
 public class Model {
+  private final String[] monthNames = {"January", "Febrary", "March", "April", "May", "June", "July", "Auguest", "September", "October", "November", "December"};
   private Calendar highlightedCal; // the current date used by view
   private String filePath;
   private List<Event> events; // in order of start time
@@ -142,14 +143,26 @@ public class Model {
    one of Utilities. Convert Calendar instance to string "mm/dd/yyyy".
    */
   public String getMMDDYYYY(){
-    int month = highlightedCal.get(highlightedCal.MONTH) + 1;
+    int month = highlightedCal.get(highlightedCal.MONTH) ;
     int day = highlightedCal.get(highlightedCal.DAY_OF_MONTH);
     int year = highlightedCal.get(highlightedCal.YEAR);
     String result = "";
-    result += month;
+    result += month + 1;
     result += "/";
     result += day;
     result += "/";
+    result += year;
+    return result;
+  }
+  /**
+   one of Utilities. Convert Calendar instance to string "month yyyy".
+   */
+  public String getMonthYYYY(){
+    int month = highlightedCal.get(highlightedCal.MONTH);
+    int year = highlightedCal.get(highlightedCal.YEAR);
+    String result = "";
+    result += monthNames[month];
+    result += " ";
     result += year;
     return result;
   }

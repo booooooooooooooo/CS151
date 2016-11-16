@@ -17,6 +17,7 @@ import java.util.Calendar;
 public class Month_P extends MyPanel {
   private final String[] columnNames = {"Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"};
   private final JTable table;
+  private final JLabel mmyyyy_Label;
   /**
     Constructor
     */
@@ -47,7 +48,6 @@ public class Month_P extends MyPanel {
     });
     // Create the scroll pane and add the table to it.
     JScrollPane scrollPane = new JScrollPane(table);
-    // Add the scroll pane to this panel.
 
     JButton prev_B = new JButton("<");
     prev_B.addActionListener(new ActionListener() {
@@ -81,6 +81,8 @@ public class Month_P extends MyPanel {
       }
     });
 
+    mmyyyy_Label = new JLabel(model.getMonthYYYY());
+
     setLayout(new GridBagLayout());
     GridBagConstraints c = new GridBagConstraints();
     c.fill = GridBagConstraints.HORIZONTAL;
@@ -104,8 +106,14 @@ public class Month_P extends MyPanel {
     c.gridwidth = 1;
     add(quit_B, c);
     c.fill = GridBagConstraints.HORIZONTAL;
-    c.gridx = 0;
+    c.gridx = 1;
     c.gridy = 1;
+    c.gridwidth = 4;
+    add(mmyyyy_Label, c);
+
+    c.fill = GridBagConstraints.HORIZONTAL;
+    c.gridx = 0;
+    c.gridy = 2;
     c.gridwidth = 4;
     add(scrollPane, c);
 
@@ -186,5 +194,6 @@ public class Month_P extends MyPanel {
       }
     }
     highlightHighlightedDay();
+    mmyyyy_Label.setText(model.getMonthYYYY());
   }
 }
